@@ -522,6 +522,7 @@ p {
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -2524,6 +2525,10 @@ p {
   .nav-logo-text h1 {
     white-space: normal;
     font-size: 0.8rem;
+  }
+
+  .hero h1 {
+    min-height: 180px;
   }
 
   .navbar.scrolled .nav-logo-text h1 {

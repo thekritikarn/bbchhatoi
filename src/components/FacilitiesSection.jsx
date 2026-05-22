@@ -110,12 +110,12 @@ export default function FacilitiesSection({ isPreview = false }) {
 
         <ScrollReveal className="facilities-grid reveal-stagger">
           {displayedFacilities.map((fac, idx) => (
-            <div key={idx} className="facility-card">
+            <div key={idx} className="facility-card" style={{ "--accent-color": fac.accent }}>
               {/* Top accent bar */}
-              <div className="facility-card-accent" style={{ background: fac.accent }} />
+              <div className="facility-card-accent" />
 
               <div className="facility-card-body">
-                <div className="facility-icon" style={{ background: `${fac.accent}15`, color: fac.accent }}>
+                <div className="facility-icon">
                   {fac.icon}
                 </div>
                 <h4>{fac.title}</h4>

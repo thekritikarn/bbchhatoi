@@ -1,25 +1,31 @@
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import MissionVision from "@/components/MissionVision";
+import TrustBar from "@/components/TrustBar";
+import AboutSnapshot from "@/components/AboutSnapshot";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import CoursesHighlight from "@/components/CoursesHighlight";
+import AdmissionCTA from "@/components/AdmissionCTA";
 import CampusExplorer from "@/components/CampusExplorer";
-import CoursesSection from "@/components/CoursesSection";
-import AdmissionSection from "@/components/AdmissionSection";
-import FacilitiesSection from "@/components/FacilitiesSection";
-import ContactSection from "@/components/ContactSection";
+import TestimonialsStrip from "@/components/TestimonialsStrip";
+import ContactCTA from "@/components/ContactCTA";
+
+export const metadata = {
+  title: "B.B. Chhatoi Higher Secondary School | Quality +2 Education in Nabarangpur, Odisha",
+  description:
+    "B.B. Chhatoi HSS, Nabarangpur — Providing affordable CHSE Odisha +2 Science & Arts education to rural and tribal students since 2009. Hostel, NEET coaching, SAMS admission.",
+};
 
 export default function Home() {
   return (
     <main>
       <HeroSection />
-      <AboutSection isPreview={true} />
-      <MissionVision />
+      <TrustBar />
+      <AboutSnapshot />
       <WhyChooseUs />
+      <CoursesHighlight />
+      <AdmissionCTA />
       <CampusExplorer />
-      <CoursesSection isPreview={true} />
-      <AdmissionSection isPreview={true} />
-      <FacilitiesSection isPreview={true} />
-      <ContactSection isPreview={true} />
+      <TestimonialsStrip />
+      <ContactCTA />
     </main>
   );
 }

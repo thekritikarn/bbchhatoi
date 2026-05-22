@@ -1,5 +1,6 @@
 import FacilitiesSection from "@/components/FacilitiesSection";
 import StudentSupport from "@/components/StudentSupport";
+import CampusExplorer from "@/components/CampusExplorer";
 
 export const metadata = {
   title: "Campus Life & Student Support | B.B. Chhatoi Higher Secondary School",
@@ -9,6 +10,7 @@ export const metadata = {
 export default function CampusLifePage() {
   return (
     <main>
+      <CampusExplorer />
       <FacilitiesSection isPreview={false} />
       <StudentSupport />
     </main>

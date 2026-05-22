@@ -1431,8 +1431,8 @@ export default function Home() {
               </div>
               <div class="form-group">
                 <label class="form-label" for="course">Course Interest *</label>
-                <select id="course" name="course" class="form-select" required>
-                  <option value="" disabled selected>Select a course</option>
+                <select id="course" name="course" class="form-select" required defaultValue="">
+                  <option value="" disabled>Select a course</option>
                   <option value="science">+2 Science</option>
                   <option value="arts">+2 Arts</option>
                   <option value="both">Not sure / Both</option>

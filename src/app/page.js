@@ -1313,7 +1313,7 @@ export default function Home() {
   <!-- Lightbox -->
   <div class="lightbox" role="dialog" aria-label="Image lightbox">
     <button class="lightbox-close" aria-label="Close lightbox">✕</button>
-    <img src="" alt="Enlarged gallery image">
+    <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Enlarged gallery image">
   </div>
 
   <!-- ============================================================

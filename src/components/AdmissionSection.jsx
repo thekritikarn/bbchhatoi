@@ -68,7 +68,7 @@ export default function AdmissionSection() {
         </ScrollReveal>
 
         {/* Required Documents */}
-        <div className="documents-wrapper reveal">
+        <ScrollReveal className="documents-wrapper reveal">
           <h3 className="text-center" style={{ marginBottom: "var(--space-xl)", color: "var(--primary)" }}>
             Required Documents
           </h3>
@@ -86,7 +86,7 @@ export default function AdmissionSection() {
               </div>
             ))}
           </ScrollReveal>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

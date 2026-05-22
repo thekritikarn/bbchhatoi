@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 
-export default function ContactSection() {
+export default function ContactSection({ isPreview = false }) {
   const [formState, setFormState] = useState({
     name: "",
     phone: "",
@@ -73,12 +74,12 @@ export default function ContactSection() {
               with B.B. Chhatoi Higher Secondary School.
             </p>
             <div className="cta-actions">
-              <a href="#contact" className="btn btn-primary btn-lg">
+              <Link href={isPreview ? "/contact" : "#contact"} className="btn btn-primary btn-lg">
                 Inquire Now
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </Link>
               <a href="tel:+918637264915" className="btn btn-outline btn-lg">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: "18px", height: "18px" }}>
                   <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -89,7 +90,7 @@ export default function ContactSection() {
           </ScrollReveal>
         </div>
       </section>
-
+ 
       {/* ============================================================
            CONTACT SECTION
            ============================================================ */}
@@ -102,7 +103,7 @@ export default function ContactSection() {
               Have questions about admissions, courses, or campus facilities? We&apos;re here to help.
             </p>
           </ScrollReveal>
-
+ 
           <div className="contact-grid">
             {/* Left: Contact Info */}
             <ScrollReveal className="contact-info-cards reveal-left">
@@ -124,7 +125,7 @@ export default function ContactSection() {
                   </p>
                 </div>
               </div>
-
+ 
               <div className="contact-card">
                 <div className="contact-card-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -142,7 +143,7 @@ export default function ContactSection() {
                   </p>
                 </div>
               </div>
-
+ 
               <div className="contact-card">
                 <div className="contact-card-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -158,18 +159,20 @@ export default function ContactSection() {
                   </p>
                 </div>
               </div>
-
+ 
               {/* Map */}
-              <div className="map-container">
-                <iframe
-                  src="https://maps.google.com/maps?q=B.B.%20CHHATOI%20SCHOOL%20%26%20COLLEGE%20OF%20NURSING&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                  allowFullScreen=""
-                  loading="lazy"
-                  title="B.B. Chhatoi HSS Location Map"
-                ></iframe>
-              </div>
+              {!isPreview && (
+                <div className="map-container">
+                  <iframe
+                    src="https://maps.google.com/maps?q=B.B.%20CHHATOI%20SCHOOL%20%26%20COLLEGE%20OF%20NURSING&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                    allowFullScreen=""
+                    loading="lazy"
+                    title="B.B. Chhatoi HSS Location Map"
+                  ></iframe>
+                </div>
+              )}
             </ScrollReveal>
-
+ 
             {/* Right: Inquiry Form */}
             <ScrollReveal className="contact-form reveal-right">
               <h3 style={{ marginBottom: "var(--space-lg)", color: "var(--primary)" }}>Send an Inquiry</h3>

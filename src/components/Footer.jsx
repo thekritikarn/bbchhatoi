@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -53,12 +54,12 @@ export default function Footer() {
           <div className="footer-column">
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#courses">Courses</a></li>
-              <li><a href="#fees">Fee Structure</a></li>
-              <li><a href="#admission">Admission</a></li>
-              <li><a href="#gallery">Gallery</a></li>
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/academics">Courses</Link></li>
+              <li><Link href="/academics#fees">Fee Structure</Link></li>
+              <li><Link href="/admission">Admission</Link></li>
+              <li><Link href="/gallery">Gallery</Link></li>
             </ul>
           </div>
 
@@ -66,12 +67,12 @@ export default function Footer() {
           <div className="footer-column">
             <h4>Academics</h4>
             <ul>
-              <li><a href="#courses">+2 Science</a></li>
-              <li><a href="#courses">+2 Arts</a></li>
-              <li><a href="#facilities">Facilities</a></li>
-              <li><a href="#support">Scholarships</a></li>
-              <li><a href="#rules">Rules</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><Link href="/academics">+2 Science</Link></li>
+              <li><Link href="/academics">+2 Arts</Link></li>
+              <li><Link href="/campus-life">Facilities</Link></li>
+              <li><Link href="/campus-life#support">Scholarships</Link></li>
+              <li><Link href="/rules">Rules</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
 
@@ -111,8 +112,8 @@ export default function Footer() {
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} B.B. Chhatoi Higher Secondary School. All Rights Reserved. | Under Moon Light Charitable Trust (Regd. No. 48/09)</p>
           <div className="footer-bottom-links">
-            <a href="#rules">Terms & Conditions</a>
-            <a href="#rules">Privacy Policy</a>
+            <Link href="/rules">Terms & Conditions</Link>
+            <Link href="/rules">Privacy Policy</Link>
           </div>
         </div>
       </div>

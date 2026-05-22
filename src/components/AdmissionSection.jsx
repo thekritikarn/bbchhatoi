@@ -1,8 +1,7 @@
-"use client";
-
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 
-export default function AdmissionSection() {
+export default function AdmissionSection({ isPreview = false }) {
   const steps = [
     {
       num: 1,
@@ -67,27 +66,36 @@ export default function AdmissionSection() {
           ))}
         </ScrollReveal>
 
-        {/* Required Documents */}
-        <ScrollReveal className="documents-wrapper reveal">
-          <h3 className="text-center" style={{ marginBottom: "var(--space-xl)", color: "var(--primary)" }}>
-            Required Documents
-          </h3>
-          <ScrollReveal className="documents-grid reveal-stagger">
-            {documents.map((doc, idx) => (
-              <div key={idx} className="doc-item">
-                <svg viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                {doc}
-              </div>
-            ))}
+        {/* Required Documents - Hidded on preview */}
+        {!isPreview ? (
+          <ScrollReveal className="documents-wrapper reveal">
+            <h3 className="text-center" style={{ marginBottom: "var(--space-xl)", color: "var(--primary)" }}>
+              Required Documents
+            </h3>
+            <ScrollReveal className="documents-grid reveal-stagger">
+              {documents.map((doc, idx) => (
+                <div key={idx} className="doc-item">
+                  <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {doc}
+                </div>
+              ))}
+            </ScrollReveal>
           </ScrollReveal>
-        </ScrollReveal>
+        ) : (
+          <div className="text-center" style={{ marginTop: "3rem" }}>
+            <Link href="/admission" className="btn btn-primary">
+              View Required Documents & Eligibility Criteria
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
 }
+

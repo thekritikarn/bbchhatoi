@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 
-export default function FacilitiesSection() {
+export default function FacilitiesSection({ isPreview = false }) {
   const facilities = [
     {
       title: "Hostel",
@@ -79,6 +80,8 @@ export default function FacilitiesSection() {
     },
   ];
 
+  const displayedFacilities = isPreview ? facilities.slice(0, 4) : facilities;
+
   return (
     <section className="section section-alt" id="facilities">
       <div className="container">
@@ -91,7 +94,7 @@ export default function FacilitiesSection() {
         </ScrollReveal>
 
         <ScrollReveal className="facilities-grid reveal-stagger">
-          {facilities.map((fac, idx) => (
+          {displayedFacilities.map((fac, idx) => (
             <div key={idx} className="facility-card">
               <div className="facility-icon">{fac.icon}</div>
               <h4>{fac.title}</h4>
@@ -99,6 +102,14 @@ export default function FacilitiesSection() {
             </div>
           ))}
         </ScrollReveal>
+
+        {isPreview && (
+          <div className="text-center" style={{ marginTop: "3rem" }}>
+            <Link href="/campus-life" className="btn btn-primary">
+              View All Facilities & Services
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

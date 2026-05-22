@@ -1,8 +1,7 @@
-"use client";
-
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 
-export default function CoursesSection() {
+export default function CoursesSection({ isPreview = false }) {
   return (
     <section className="section" id="courses">
       <div className="container">
@@ -93,9 +92,9 @@ export default function CoursesSection() {
                 </div>
               </div>
 
-              <a href="#fees" className="btn btn-secondary btn-sm" style={{ marginTop: "0.5rem" }}>
+              <Link href={isPreview ? "/academics" : "#fees"} className="btn btn-secondary btn-sm" style={{ marginTop: "0.5rem" }}>
                 View Fee Structure →
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -177,12 +176,20 @@ export default function CoursesSection() {
                 </div>
               </div>
 
-              <a href="#fees" className="btn btn-secondary btn-sm" style={{ marginTop: "0.5rem" }}>
+              <Link href={isPreview ? "/academics" : "#fees"} className="btn btn-secondary btn-sm" style={{ marginTop: "0.5rem" }}>
                 View Fee Structure →
-              </a>
+              </Link>
             </div>
           </div>
         </ScrollReveal>
+
+        {isPreview && (
+          <div className="text-center" style={{ marginTop: "3rem" }}>
+            <Link href="/academics" className="btn btn-primary">
+              Explore Subject Combinations & Full Fee Tables
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

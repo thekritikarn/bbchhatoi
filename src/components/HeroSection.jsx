@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 
 function StatCounter({ target, suffix = "", label }) {
   const [count, setCount] = useState(0);
@@ -94,15 +95,6 @@ export default function HeroSection() {
     };
   }, []);
 
-  const handleSmoothScroll = (e, targetId) => {
-    e.preventDefault();
-    const target = document.getElementById(targetId);
-    if (target) {
-      const targetPos = target.getBoundingClientRect().top + window.pageYOffset - 100;
-      window.scrollTo({ top: targetPos, behavior: "smooth" });
-    }
-  };
-
   return (
     <section className="hero" id="home">
       <div className="hero-bg">
@@ -148,23 +140,21 @@ export default function HeroSection() {
           </p>
 
           <div className="hero-actions">
-            <a
-              href="#admission"
+            <Link
+              href="/admission"
               className="btn btn-primary btn-lg"
-              onClick={(e) => handleSmoothScroll(e, "admission")}
             >
               Apply for Admission 2026-27
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
-            <a
-              href="#courses"
+            </Link>
+            <Link
+              href="/academics"
               className="btn btn-outline btn-lg"
-              onClick={(e) => handleSmoothScroll(e, "courses")}
             >
               Explore Courses
-            </a>
+            </Link>
           </div>
 
           <div className="hero-stats">

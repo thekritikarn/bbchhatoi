@@ -1,8 +1,7 @@
-"use client";
-
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 
-export default function AboutSection() {
+export default function AboutSection({ isPreview = false }) {
   return (
     <>
       {/* ============================================================
@@ -65,34 +64,44 @@ export default function AboutSection() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Director of HS Education
+                  Directorate of HS Education
                 </div>
               </div>
+
+              {isPreview && (
+                <div style={{ marginTop: "2rem" }}>
+                  <Link href="/about" className="btn btn-secondary">
+                    Read Founder&apos;s Vision & History
+                  </Link>
+                </div>
+              )}
             </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* ============================================================
-           FOUNDER TRIBUTE
+           FOUNDER TRIBUTE (Only visible on full page)
            ============================================================ */}
-      <section className="section founder-section">
-        <div className="container">
-          <ScrollReveal className="founder-content reveal">
-            <span className="section-label" style={{ color: "var(--gold-light)" }}>
-              Founder&apos;s Vision
-            </span>
-            <div className="founder-quote">
-              Education is the most powerful tool for service to mankind. Every student, regardless of economic status,
-              deserves access to quality learning. Our mission is to empower the tribal and rural youth of Odisha
-              through education, creating employment opportunities and building a brighter future.
-            </div>
-            <div className="founder-divider"></div>
-            <div className="founder-name">Late Shri Bhramarbar Chhatoi</div>
-            <div className="founder-title">Founder — Moon Light Charitable Trust</div>
-          </ScrollReveal>
-        </div>
-      </section>
+      {!isPreview && (
+        <section className="section founder-section">
+          <div className="container">
+            <ScrollReveal className="founder-content reveal">
+              <span className="section-label" style={{ color: "var(--gold-light)" }}>
+                Founder&apos;s Vision
+              </span>
+              <div className="founder-quote">
+                Education is the most powerful tool for service to mankind. Every student, regardless of economic status,
+                deserves access to quality learning. Our mission is to empower the tribal and rural youth of Odisha
+                through education, creating employment opportunities and building a brighter future.
+              </div>
+              <div className="founder-divider"></div>
+              <div className="founder-name">Late Shri Bhramarbar Chhatoi</div>
+              <div className="founder-title">Founder — Moon Light Charitable Trust</div>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
     </>
   );
 }

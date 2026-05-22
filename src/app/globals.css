@@ -2249,6 +2249,14 @@ p {
   line-height: 1.6;
 }
 
+.footer-contact-item a {
+  transition: var(--transition-base);
+}
+
+.footer-contact-item a:hover {
+  color: var(--gold);
+}
+
 .footer-contact-item svg {
   width: 18px;
   height: 18px;

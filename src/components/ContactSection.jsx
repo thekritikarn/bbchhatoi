@@ -60,6 +60,16 @@ export default function ContactSection({ isPreview = false }) {
     }, 1000);
   };
 
+  const handleInquireClick = (e) => {
+    if (!isPreview) {
+      e.preventDefault();
+      const element = document.getElementById("inquiry-section");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <>
       {/* ============================================================
@@ -74,7 +84,11 @@ export default function ContactSection({ isPreview = false }) {
               Enrollment is now officially open for both Science and Arts streams. Visit our campus facilitation center or submit an online inquiry to secure your seat.
             </p>
             <div className="cta-actions">
-              <Link href={isPreview ? "/contact" : "#contact"} className="btn btn-primary btn-lg cta-primary-btn">
+              <Link 
+                href={isPreview ? "/contact#inquiry-section" : "#inquiry-section"} 
+                onClick={handleInquireClick}
+                className="btn btn-primary btn-lg cta-primary-btn"
+              >
                 Inquire Now
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="btn-arrow">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -165,8 +179,41 @@ export default function ContactSection({ isPreview = false }) {
  
             </ScrollReveal>
  
-            {/* Right: Inquiry Form */}
-            <ScrollReveal className="contact-form-card reveal-right">
+            {/* Right: Interactive Map */}
+            {!isPreview && (
+              <ScrollReveal className="contact-map-card-wrapper reveal-right">
+                <div className="map-wrapper-card">
+                  <div className="map-card-header">
+                    <span className="map-badge">Interactive Map</span>
+                    <h5>Dhodra Campus Location</h5>
+                  </div>
+                  <div className="map-container">
+                    <iframe
+                      src="https://maps.google.com/maps?q=B.B.%20CHHATOI%20SCHOOL%20%26%20COLLEGE%20OF%20NURSING&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                      allowFullScreen=""
+                      loading="lazy"
+                      title="B.B. Chhatoi HSS Location Map"
+                    ></iframe>
+                  </div>
+                  <a
+                    href="https://maps.google.com/?q=B.B.+CHHATOI+SCHOOL+%26+COLLEGE+OF+NURSING"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="map-directions-btn"
+                  >
+                    Open in Google Maps
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="btn-directions-arrow">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </ScrollReveal>
+            )}
+          </div>
+
+          {/* Centered Inquiry Form Section Below */}
+          <ScrollReveal className="contact-form-section reveal">
+            <div id="inquiry-section" className="contact-form-card">
               <div className="form-card-header">
                 <span className="form-badge">Inquiry Desk</span>
                 <h3>Send an Inquiry</h3>
@@ -212,7 +259,7 @@ export default function ContactSection({ isPreview = false }) {
                     </div>
                   </div>
                 </div>
- 
+
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label" htmlFor="email">
@@ -252,7 +299,7 @@ export default function ContactSection({ isPreview = false }) {
                     </select>
                   </div>
                 </div>
- 
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="message">
                     Message / Question
@@ -267,7 +314,7 @@ export default function ContactSection({ isPreview = false }) {
                     rows={5}
                   ></textarea>
                 </div>
- 
+
                 <button
                   type="submit"
                   className="btn btn-primary form-submit-btn"
@@ -292,39 +339,8 @@ export default function ContactSection({ isPreview = false }) {
                   )}
                 </button>
               </form>
-            </ScrollReveal>
-          </div>
-
-          {/* Map Section Below */}
-          {!isPreview && (
-            <ScrollReveal className="map-section-wrapper reveal">
-              <div className="map-wrapper-card">
-                <div className="map-card-header">
-                  <span className="map-badge">Interactive Map</span>
-                  <h5>Dhodra Campus Location</h5>
-                </div>
-                <div className="map-container">
-                  <iframe
-                    src="https://maps.google.com/maps?q=B.B.%20CHHATOI%20SCHOOL%20%26%20COLLEGE%20OF%20NURSING&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                    allowFullScreen=""
-                    loading="lazy"
-                    title="B.B. Chhatoi HSS Location Map"
-                  ></iframe>
-                </div>
-                <a
-                  href="https://maps.google.com/?q=B.B.+CHHATOI+SCHOOL+%26+COLLEGE+OF+NURSING"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="map-directions-btn"
-                >
-                  Open in Google Maps
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="btn-directions-arrow">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
-            </ScrollReveal>
-          )}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>

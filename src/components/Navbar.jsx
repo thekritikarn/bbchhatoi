@@ -52,7 +52,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`} id="navbar">
+      <nav className={`navbar ${scrolled || pathname !== "/" ? "scrolled" : ""}`} id="navbar">
         <div className="container">
           <Link
             href="/"

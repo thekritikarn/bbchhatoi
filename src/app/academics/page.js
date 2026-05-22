@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function AcademicsPage() {
   return (
-    <main style={{ paddingTop: "120px" }}>
+    <main>
       <CoursesSection isPreview={false} />
       <FeesSection />
     </main>

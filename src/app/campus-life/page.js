@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function CampusLifePage() {
   return (
-    <main style={{ paddingTop: "120px" }}>
+    <main>
       <FacilitiesSection isPreview={false} />
       <StudentSupport />
     </main>

@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main style={{ paddingTop: "120px" }}>
+    <main>
       <AboutSection isPreview={false} />
     </main>
   );

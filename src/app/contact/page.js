@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main style={{ paddingTop: "120px" }}>
+    <main>
       <ContactSection isPreview={false} />
     </main>
   );

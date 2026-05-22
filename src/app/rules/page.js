@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function RulesPage() {
   return (
-    <main style={{ paddingTop: "120px" }}>
+    <main>
       <RulesSection />
     </main>
   );

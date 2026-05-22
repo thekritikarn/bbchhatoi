@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function GalleryPage() {
   return (
-    <main style={{ paddingTop: "120px" }}>
+    <main>
       <GallerySection />
     </main>
   );

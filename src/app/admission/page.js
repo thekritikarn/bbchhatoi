@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function AdmissionPage() {
   return (
-    <main style={{ paddingTop: "120px" }}>
+    <main>
       <AdmissionSection isPreview={false} />
     </main>
   );

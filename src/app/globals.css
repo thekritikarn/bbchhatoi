@@ -648,6 +648,9 @@ p {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.35);
+  will-change: transform;
+  transform: translate3d(0, 0, 0) scale(1.1);
+  backface-visibility: hidden;
 }
 
 .hero-overlay {
@@ -2368,6 +2371,7 @@ p {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: transform, opacity;
 }
 
 .reveal.revealed {
@@ -2379,6 +2383,7 @@ p {
   opacity: 0;
   transform: translateX(-30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: transform, opacity;
 }
 
 .reveal-left.revealed {
@@ -2390,6 +2395,7 @@ p {
   opacity: 0;
   transform: translateX(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: transform, opacity;
 }
 
 .reveal-right.revealed {
@@ -2402,6 +2408,7 @@ p {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  will-change: transform, opacity;
 }
 
 .reveal-stagger.revealed>*:nth-child(1) {

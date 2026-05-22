@@ -9,14 +9,29 @@ export default function Home() {
     Interactions, Animations & Dynamic Behaviors
     ============================================================ */
 
-    // ── 2. STICKY NAVBAR ON SCROLL ───────────────────────────────
+    // ── 1. DOM ELEMENTS & METRICS CACHE (60fps Scroll Optimization) ─
     const navbar = document.getElementById('navbar');
     const eventsBar = document.querySelector('.events-bar');
-    
+    const sections = document.querySelectorAll('section[id]');
+    const navLinksAll = document.querySelectorAll('.nav-links a:not(.nav-cta), .mobile-menu a:not(.nav-cta)');
+    const backToTop = document.querySelector('.back-to-top');
+    const heroBg = document.querySelector('.hero-bg img');
+
+    let scrollThreshold = eventsBar ? eventsBar.offsetHeight : 40;
+    let sectionOffsets = [];
+
+    function cacheLayoutMetrics() {
+      scrollThreshold = eventsBar ? eventsBar.offsetHeight : 40;
+      sectionOffsets = Array.from(sections).map(section => ({
+        id: section.getAttribute('id'),
+        top: section.offsetTop,
+        height: section.offsetHeight
+      }));
+    }
+
+    // ── 2. STICKY NAVBAR ON SCROLL ───────────────────────────────
     function handleNavScroll() {
       if (!navbar) return;
-      const scrollThreshold = eventsBar ? eventsBar.offsetHeight : 40;
-      
       if (window.scrollY >= scrollThreshold) {
         if (!navbar.classList.contains('scrolled')) {
           navbar.classList.add('scrolled');
@@ -27,9 +42,6 @@ export default function Home() {
         }
       }
     }
-
-    window.addEventListener('scroll', handleNavScroll, { passive: true });
-    handleNavScroll(); // run on load
 
     // ── 2. MOBILE MENU TOGGLE ───────────────────────────────────
     const navToggle = document.querySelector('.nav-toggle');
@@ -68,30 +80,22 @@ export default function Home() {
       });
     });
 
-    // ── 4. ACTIVE NAV LINK HIGHLIGHT ────────────────────────────
-    const sections = document.querySelectorAll('section[id]');
-    const navLinksAll = document.querySelectorAll('.nav-links a:not(.nav-cta), .mobile-menu a:not(.nav-cta)');
-
+    // ── 4. ACTIVE NAV LINK HIGHLIGHT (Layout metrics cached to prevent reflows) ─
     function updateActiveNav() {
       const scrollPos = window.scrollY + 150;
-
-      sections.forEach(section => {
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-        const id = section.getAttribute('id');
-
-        if (scrollPos >= top && scrollPos < top + height) {
+      for (const section of sectionOffsets) {
+        if (scrollPos >= section.top && scrollPos < section.top + section.height) {
           navLinksAll.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${id}`) {
+            if (link.getAttribute('href') === `#${section.id}`) {
               link.classList.add('active');
+            } else {
+              link.classList.remove('active');
             }
           });
+          break;
         }
-      });
+      }
     }
-
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
 
     // ── 5. SCROLL REVEAL (Intersection Observer) ─────────────────
     const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger');
@@ -252,20 +256,20 @@ export default function Home() {
     }
 
     // ── 10. BACK TO TOP BUTTON ───────────────────────────────────
-    const backToTop = document.querySelector('.back-to-top');
-
     function handleBackToTopScroll() {
       if (!backToTop) return;
       if (window.scrollY > 500) {
-        backToTop.classList.add('visible');
+        if (!backToTop.classList.contains('visible')) {
+          backToTop.classList.add('visible');
+        }
       } else {
-        backToTop.classList.remove('visible');
+        if (backToTop.classList.contains('visible')) {
+          backToTop.classList.remove('visible');
+        }
       }
     }
 
     if (backToTop) {
-      window.addEventListener('scroll', handleBackToTopScroll, { passive: true });
-
       backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
@@ -345,17 +349,47 @@ export default function Home() {
     }
 
     // ── 13. PARALLAX SUBTLE EFFECT ON HERO ──────────────────────
-    const heroBg = document.querySelector('.hero-bg img');
     function handleHeroParallax() {
       if (!heroBg) return;
       const scrolled = window.scrollY;
       if (scrolled < window.innerHeight) {
-        heroBg.style.transform = `translateY(${scrolled * 0.3}px) scale(1.1)`;
+        heroBg.style.transform = `translate3d(0, ${scrolled * 0.3}px, 0) scale(1.1)`;
       }
     }
-    if (heroBg && window.innerWidth > 768) {
-      window.addEventListener('scroll', handleHeroParallax, { passive: true });
+
+    // ── 13a. SINGLE THROTTLED SCROLL LISTENER (rAF-based) ────────
+    let ticked = false;
+    function onScrollThrottled() {
+      if (!ticked) {
+        window.requestAnimationFrame(() => {
+          handleNavScroll();
+          updateActiveNav();
+          handleBackToTopScroll();
+          if (window.innerWidth > 768) {
+            handleHeroParallax();
+          }
+          ticked = false;
+        });
+        ticked = true;
+      }
     }
+
+    // Bind event listeners
+    cacheLayoutMetrics();
+    window.addEventListener('resize', cacheLayoutMetrics);
+    window.addEventListener('scroll', onScrollThrottled, { passive: true });
+    
+    // Initial triggering
+    handleNavScroll();
+    updateActiveNav();
+    handleBackToTopScroll();
+    if (window.innerWidth > 768) {
+      handleHeroParallax();
+    }
+
+    // Safety fallback metric updates as elements load/render
+    setTimeout(cacheLayoutMetrics, 600);
+    setTimeout(cacheLayoutMetrics, 2000);
 
     // ── 14. EVENTS TICKER DUPLICATION ────────────────────────────
     const tickerInners = document.querySelectorAll('.events-scroll-inner, .ticker-inner');
@@ -369,10 +403,8 @@ export default function Home() {
 
     // Cleanup functions
     return () => {
-      window.removeEventListener('scroll', handleNavScroll);
-      window.removeEventListener('scroll', updateActiveNav);
-      window.removeEventListener('scroll', handleBackToTopScroll);
-      window.removeEventListener('scroll', handleHeroParallax);
+      window.removeEventListener('scroll', onScrollThrottled);
+      window.removeEventListener('resize', cacheLayoutMetrics);
       document.removeEventListener('keydown', handleEscapeKey);
       revealObserver.disconnect();
       counterObserver.disconnect();

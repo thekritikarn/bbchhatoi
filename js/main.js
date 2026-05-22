@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── 1. NAVBAR SCROLL EFFECT ──────────────────────────────────
   const navbar = document.querySelector('.navbar');
-  const scrollThreshold = 80;
+  const eventsBar = document.querySelector('.events-bar');
 
   function handleNavScroll() {
-    if (window.scrollY > scrollThreshold) {
+    const scrollThreshold = eventsBar ? eventsBar.offsetHeight : 40;
+    if (window.scrollY >= scrollThreshold) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');

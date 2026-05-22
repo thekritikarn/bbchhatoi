@@ -9,13 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.getElementById('navbar');
   const eventsBar = document.querySelector('.events-bar');
   
-  // Create a placeholder to prevent page jump when navbar becomes fixed
-  const navPlaceholder = document.createElement('div');
-  navPlaceholder.style.display = 'none';
-  if (navbar && navbar.parentNode) {
-    navbar.parentNode.insertBefore(navPlaceholder, navbar.nextSibling);
-  }
-  
   function handleNavScroll() {
     if (!navbar) return;
     const scrollThreshold = eventsBar ? eventsBar.offsetHeight : 40;
@@ -23,13 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.scrollY >= scrollThreshold) {
       if (!navbar.classList.contains('scrolled')) {
         navbar.classList.add('scrolled');
-        navPlaceholder.style.height = `${navbar.offsetHeight}px`;
-        navPlaceholder.style.display = 'block';
       }
     } else {
       if (navbar.classList.contains('scrolled')) {
         navbar.classList.remove('scrolled');
-        navPlaceholder.style.display = 'none';
       }
     }
   }

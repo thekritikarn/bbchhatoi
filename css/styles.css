@@ -129,6 +129,10 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+section, footer {
+  overflow-x: clip;
+}
+
 body {
   font-family: var(--font-body);
   color: var(--text-body);
@@ -136,7 +140,6 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: clip;
 }
 
 img {
@@ -299,7 +302,9 @@ p {
    5. NAVIGATION
    ============================================================ */
 .navbar {
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
   left: 0;
   right: 0;
   z-index: 1000;
@@ -310,8 +315,6 @@ p {
 }
 
 .navbar.scrolled {
-  position: fixed;
-  top: 0;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);

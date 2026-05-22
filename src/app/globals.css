@@ -353,7 +353,7 @@ p {
 .nav-logo-text {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* Increased gap to fix overlap */
+  gap: 0px; /* Adjust gap to 0 for tight spacing */
   justify-content: center;
 }
 
@@ -361,7 +361,7 @@ p {
   font-size: 0.95rem;
   font-weight: 800;
   color: var(--white);
-  line-height: 1.3; /* Increased line-height */
+  line-height: 1.1; /* Tighter line-height */
   transition: var(--transition-base);
   white-space: nowrap;
 }
@@ -379,7 +379,7 @@ p {
   font-weight: 500;
   letter-spacing: 0.05em;
   transition: var(--transition-base);
-  line-height: 1.2; /* Increased line-height */
+  line-height: 1; /* Tighter line-height */
 }
 
 .navbar.scrolled .nav-logo-text span {

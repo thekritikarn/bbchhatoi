@@ -2471,8 +2471,9 @@ p {
   }
 
   .rules-dashboard {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-lg);
+    width: 100%;
   }
 
   .rules-sidebar {
@@ -2481,7 +2482,9 @@ p {
     background: transparent;
     border: none;
     box-shadow: none;
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
+    width: 100%;
+    min-width: 0;
   }
 
   .rules-tabs-list {
@@ -2517,11 +2520,16 @@ p {
     color: var(--white) !important;
     border: 1px solid var(--primary) !important;
     border-left: 1px solid var(--primary) !important; /* overrides 4px gold left border */
+    box-shadow: 0 4px 12px rgba(27, 94, 59, 0.15) !important;
   }
 
   .rules-tab-btn.active .rules-tab-icon-wrapper {
     background: rgba(255, 255, 255, 0.2) !important;
     color: var(--white) !important;
+  }
+
+  .rules-tab-icon-wrapper {
+    border-radius: 50% !important;
   }
 
   .rules-tab-chevron {
@@ -2531,10 +2539,13 @@ p {
   .rules-content-pane {
     padding: var(--space-lg);
     min-height: auto;
+    width: 100%;
+    min-width: 0;
   }
 
   .rules-compliance-banner {
     margin-top: var(--space-xl);
+    width: 100%;
   }
 
   .compliance-banner-inner {
@@ -2561,6 +2572,8 @@ p {
 
   .rules-content-pane {
     padding: 1.25rem 1rem;
+    width: 100%;
+    min-width: 0;
   }
 
   .rules-pane-header {
@@ -2598,6 +2611,7 @@ p {
     padding: 1.25rem 1rem;
     border-radius: var(--radius-lg);
     margin-top: var(--space-lg);
+    width: 100%;
   }
 }
 

@@ -5,359 +5,379 @@ import parse from 'html-react-parser';
 export default function Home() {
   useEffect(() => {
     /* ============================================================
-   B.B. CHHATOI HIGHER SECONDARY SCHOOL — Main JavaScript
-   Interactions, Animations & Dynamic Behaviors
-   ============================================================ */
+    B.B. CHHATOI HIGHER SECONDARY SCHOOL — Main JavaScript
+    Interactions, Animations & Dynamic Behaviors
+    ============================================================ */
 
-
-
-  // ── 2. STICKY NAVBAR ON SCROLL ───────────────────────────────
-  const navbar = document.getElementById('navbar');
-  const eventsBar = document.querySelector('.events-bar');
-  
-  function handleNavScroll() {
-    if (!navbar) return;
-    const scrollThreshold = eventsBar ? eventsBar.offsetHeight : 40;
+    // ── 2. STICKY NAVBAR ON SCROLL ───────────────────────────────
+    const navbar = document.getElementById('navbar');
+    const eventsBar = document.querySelector('.events-bar');
     
-    if (window.scrollY >= scrollThreshold) {
-      if (!navbar.classList.contains('scrolled')) {
-        navbar.classList.add('scrolled');
-      }
-    } else {
-      if (navbar.classList.contains('scrolled')) {
-        navbar.classList.remove('scrolled');
+    function handleNavScroll() {
+      if (!navbar) return;
+      const scrollThreshold = eventsBar ? eventsBar.offsetHeight : 40;
+      
+      if (window.scrollY >= scrollThreshold) {
+        if (!navbar.classList.contains('scrolled')) {
+          navbar.classList.add('scrolled');
+        }
+      } else {
+        if (navbar.classList.contains('scrolled')) {
+          navbar.classList.remove('scrolled');
+        }
       }
     }
-  }
 
-  window.addEventListener('scroll', handleNavScroll, { passive: true });
-  handleNavScroll(); // run on load
+    window.addEventListener('scroll', handleNavScroll, { passive: true });
+    handleNavScroll(); // run on load
 
-  // ── 2. MOBILE MENU TOGGLE ───────────────────────────────────
-  const navToggle = document.querySelector('.nav-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
+    // ── 2. MOBILE MENU TOGGLE ───────────────────────────────────
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
 
-  if (navToggle && mobileMenu) {
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    });
+    if (navToggle && mobileMenu) {
+      navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      });
 
-    // Close on link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
+      // Close on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navToggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // ── 3. SMOOTH SCROLL FOR ANCHOR LINKS ───────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const navHeight = navbar ? navbar.offsetHeight : 80;
+          const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+          window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        }
       });
     });
-  }
 
-  // ── 3. SMOOTH SCROLL FOR ANCHOR LINKS ───────────────────────
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
+    // ── 4. ACTIVE NAV LINK HIGHLIGHT ────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinksAll = document.querySelectorAll('.nav-links a:not(.nav-cta), .mobile-menu a:not(.nav-cta)');
 
-      const target = document.querySelector(targetId);
-      if (target) {
-        e.preventDefault();
-        const navHeight = navbar.offsetHeight;
-        const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
-        window.scrollTo({ top: targetPos, behavior: 'smooth' });
-      }
+    function updateActiveNav() {
+      const scrollPos = window.scrollY + 150;
+
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+
+        if (scrollPos >= top && scrollPos < top + height) {
+          navLinksAll.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+    // ── 5. SCROLL REVEAL (Intersection Observer) ─────────────────
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target); // only animate once
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
     });
-  });
 
-  // ── 4. ACTIVE NAV LINK HIGHLIGHT ────────────────────────────
-  const sections = document.querySelectorAll('section[id]');
-  const navLinksAll = document.querySelectorAll('.nav-links a:not(.nav-cta), .mobile-menu a:not(.nav-cta)');
+    revealElements.forEach(el => revealObserver.observe(el));
 
-  function updateActiveNav() {
-    const scrollPos = window.scrollY + 150;
+    // ── 6. ANIMATED COUNTERS ─────────────────────────────────────
+    const counters = document.querySelectorAll('[data-count]');
+    let countersAnimated = false;
 
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute('id');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersAnimated) {
+          countersAnimated = true;
+          animateCounters();
+        }
+      });
+    }, { threshold: 0.5 });
 
-      if (scrollPos >= top && scrollPos < top + height) {
-        navLinksAll.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('active');
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    function animateCounters() {
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-count'));
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const duration = 2000;
+        const startTime = performance.now();
+
+        function updateCounter(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Ease-out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(eased * target);
+
+          counter.textContent = current + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target + suffix;
+          }
+        }
+
+        requestAnimationFrame(updateCounter);
+      });
+    }
+
+    // ── 7. FEE STRUCTURE TABS ───────────────────────────────────
+    const feeTabs = document.querySelectorAll('.fee-tab');
+    const feeContents = document.querySelectorAll('.fee-content');
+
+    feeTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+
+        feeTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        feeContents.forEach(content => {
+          content.classList.remove('active');
+          if (content.getAttribute('data-content') === target) {
+            content.classList.add('active');
           }
         });
-      }
+      });
     });
-  }
 
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
+    // Fee sub-tabs (Hostel / Day Scholar)
+    document.querySelectorAll('.fee-sub-tab').forEach(subTab => {
+      subTab.addEventListener('click', () => {
+        const parent = subTab.closest('.fee-content');
+        const target = subTab.getAttribute('data-subtab');
 
-  // ── 5. SCROLL REVEAL (Intersection Observer) ─────────────────
-  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger');
+        parent.querySelectorAll('.fee-sub-tab').forEach(t => t.classList.remove('active'));
+        subTab.classList.add('active');
 
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        revealObserver.unobserve(entry.target); // only animate once
-      }
+        parent.querySelectorAll('.fee-sub-content').forEach(content => {
+          content.classList.remove('active');
+          if (content.getAttribute('data-subcontent') === target) {
+            content.classList.add('active');
+          }
+        });
+      });
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
 
-  revealElements.forEach(el => revealObserver.observe(el));
+    // ── 8. ACCORDION (Rules & Regulations) ──────────────────────
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
 
-  // ── 6. ANIMATED COUNTERS ─────────────────────────────────────
-  const counters = document.querySelectorAll('[data-count]');
-  let countersAnimated = false;
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.accordion-item');
+        const body = item.querySelector('.accordion-body');
+        const isActive = item.classList.contains('active');
 
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !countersAnimated) {
-        countersAnimated = true;
-        animateCounters();
-      }
-    });
-  }, { threshold: 0.5 });
+        // Close all others
+        document.querySelectorAll('.accordion-item').forEach(other => {
+          other.classList.remove('active');
+          other.querySelector('.accordion-body').style.maxHeight = '0';
+        });
 
-  counters.forEach(counter => counterObserver.observe(counter));
-
-  function animateCounters() {
-    counters.forEach(counter => {
-      const target = parseInt(counter.getAttribute('data-count'));
-      const suffix = counter.getAttribute('data-suffix') || '';
-      const duration = 2000;
-      const startTime = performance.now();
-
-      function updateCounter(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        // Ease-out cubic
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(eased * target);
-
-        counter.textContent = current + suffix;
-
-        if (progress < 1) {
-          requestAnimationFrame(updateCounter);
-        } else {
-          counter.textContent = target + suffix;
-        }
-      }
-
-      requestAnimationFrame(updateCounter);
-    });
-  }
-
-  // ── 7. FEE STRUCTURE TABS ───────────────────────────────────
-  const feeTabs = document.querySelectorAll('.fee-tab');
-  const feeContents = document.querySelectorAll('.fee-content');
-
-  feeTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-tab');
-
-      feeTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      feeContents.forEach(content => {
-        content.classList.remove('active');
-        if (content.getAttribute('data-content') === target) {
-          content.classList.add('active');
+        if (!isActive) {
+          item.classList.add('active');
+          body.style.maxHeight = body.scrollHeight + 'px';
         }
       });
     });
-  });
 
-  // Fee sub-tabs (Hostel / Day Scholar)
-  document.querySelectorAll('.fee-sub-tab').forEach(subTab => {
-    subTab.addEventListener('click', () => {
-      const parent = subTab.closest('.fee-content');
-      const target = subTab.getAttribute('data-subtab');
-
-      parent.querySelectorAll('.fee-sub-tab').forEach(t => t.classList.remove('active'));
-      subTab.classList.add('active');
-
-      parent.querySelectorAll('.fee-sub-content').forEach(content => {
-        content.classList.remove('active');
-        if (content.getAttribute('data-subcontent') === target) {
-          content.classList.add('active');
-        }
-      });
-    });
-  });
-
-  // ── 8. ACCORDION (Rules & Regulations) ──────────────────────
-  const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-  accordionHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.closest('.accordion-item');
-      const body = item.querySelector('.accordion-body');
-      const isActive = item.classList.contains('active');
-
-      // Close all others
-      document.querySelectorAll('.accordion-item').forEach(other => {
-        other.classList.remove('active');
-        other.querySelector('.accordion-body').style.maxHeight = '0';
-      });
-
-      if (!isActive) {
-        item.classList.add('active');
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
-    });
-  });
-
-  // ── 9. GALLERY LIGHTBOX ──────────────────────────────────────
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxImg = document.querySelector('.lightbox img');
-  const lightboxClose = document.querySelector('.lightbox-close');
-
-  if (lightbox) {
-    galleryItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    lightboxClose?.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
-      }
-    });
+    // ── 9. GALLERY LIGHTBOX ──────────────────────────────────────
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = document.querySelector('.lightbox img');
+    const lightboxClose = document.querySelector('.lightbox-close');
 
     function closeLightbox() {
-      lightbox.classList.remove('active');
+      if (lightbox) lightbox.classList.remove('active');
       document.body.style.overflow = '';
     }
-  }
 
-  // ── 10. BACK TO TOP BUTTON ───────────────────────────────────
-  const backToTop = document.querySelector('.back-to-top');
+    function handleEscapeKey(e) {
+      if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    }
 
-  if (backToTop) {
-    window.addEventListener('scroll', () => {
+    if (lightbox) {
+      galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const img = item.querySelector('img');
+          if (lightboxImg && img) {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+          }
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      lightboxClose?.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    // ── 10. BACK TO TOP BUTTON ───────────────────────────────────
+    const backToTop = document.querySelector('.back-to-top');
+
+    function handleBackToTopScroll() {
+      if (!backToTop) return;
       if (window.scrollY > 500) {
         backToTop.classList.add('visible');
       } else {
         backToTop.classList.remove('visible');
       }
-    }, { passive: true });
+    }
 
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+    if (backToTop) {
+      window.addEventListener('scroll', handleBackToTopScroll, { passive: true });
 
-  // ── 11. HERO TEXT TYPING / CYCLING ───────────────────────────
-  const heroHighlight = document.querySelector('.hero-cycle');
-  if (heroHighlight) {
-    const words = ['Excellence', 'Leadership', 'Knowledge', 'Success'];
-    let wordIndex = 0;
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
 
-    setInterval(() => {
-      heroHighlight.style.opacity = '0';
-      heroHighlight.style.transform = 'translateY(10px)';
+    // ── 11. HERO TEXT TYPING / CYCLING ───────────────────────────
+    const heroHighlight = document.querySelector('.hero-cycle');
+    let cycleInterval;
+    if (heroHighlight) {
+      const words = ['Excellence', 'Leadership', 'Knowledge', 'Success'];
+      let wordIndex = 0;
 
-      setTimeout(() => {
-        wordIndex = (wordIndex + 1) % words.length;
-        heroHighlight.textContent = words[wordIndex];
-        heroHighlight.style.opacity = '1';
-        heroHighlight.style.transform = 'translateY(0)';
-      }, 400);
-    }, 3000);
-  }
+      cycleInterval = setInterval(() => {
+        heroHighlight.style.opacity = '0';
+        heroHighlight.style.transform = 'translateY(10px)';
 
-  // ── 12. CONTACT FORM HANDLING ────────────────────────────────
-  const contactForm = document.querySelector('#inquiry-form');
+        setTimeout(() => {
+          wordIndex = (wordIndex + 1) % words.length;
+          heroHighlight.textContent = words[wordIndex];
+          heroHighlight.style.opacity = '1';
+          heroHighlight.style.transform = 'translateY(0)';
+        }, 400);
+      }, 3000);
+    }
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+    // ── 12. CONTACT FORM HANDLING ────────────────────────────────
+    const contactForm = document.querySelector('#inquiry-form');
 
-      // Simple client-side validation
-      const requiredFields = contactForm.querySelectorAll('[required]');
-      let isValid = true;
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-      requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-          field.style.borderColor = 'var(--error)';
-          isValid = false;
-        } else {
-          field.style.borderColor = '';
+        // Simple client-side validation
+        const requiredFields = contactForm.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach(field => {
+          if (!field.value.trim()) {
+            field.style.borderColor = 'var(--error)';
+            isValid = false;
+          } else {
+            field.style.borderColor = '';
+          }
+        });
+
+        if (isValid) {
+          // Show success message
+          const btn = contactForm.querySelector('button[type="submit"]');
+          const originalText = btn.textContent;
+
+          btn.textContent = 'Sending...';
+          btn.disabled = true;
+
+          // Simulate submission (replace with real endpoint)
+          setTimeout(() => {
+            btn.textContent = '✓ Message Sent!';
+            btn.style.background = 'var(--success)';
+            btn.style.borderColor = 'var(--success)';
+
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.disabled = false;
+              btn.style.background = '';
+              btn.style.borderColor = '';
+              contactForm.reset();
+            }, 3000);
+          }, 1000);
         }
       });
 
-      if (isValid) {
-        // Show success message
-        const formData = new FormData(contactForm);
-        const btn = contactForm.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
-
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
-
-        // Simulate submission (replace with real endpoint)
-        setTimeout(() => {
-          btn.textContent = '✓ Message Sent!';
-          btn.style.background = 'var(--success)';
-          btn.style.borderColor = 'var(--success)';
-
-          setTimeout(() => {
-            btn.textContent = originalText;
-            btn.disabled = false;
-            btn.style.background = '';
-            btn.style.borderColor = '';
-            contactForm.reset();
-          }, 3000);
-        }, 1000);
-      }
-    });
-
-    // Clear error on input
-    contactForm.querySelectorAll('input, textarea, select').forEach(field => {
-      field.addEventListener('input', () => {
-        field.style.borderColor = '';
+      // Clear error on input
+      contactForm.querySelectorAll('input, textarea, select').forEach(field => {
+        field.addEventListener('input', () => {
+          field.style.borderColor = '';
+        });
       });
-    });
-  }
+    }
 
-  // ── 13. PARALLAX SUBTLE EFFECT ON HERO ──────────────────────
-  const heroBg = document.querySelector('.hero-bg img');
-  if (heroBg && window.innerWidth > 768) {
-    window.addEventListener('scroll', () => {
+    // ── 13. PARALLAX SUBTLE EFFECT ON HERO ──────────────────────
+    const heroBg = document.querySelector('.hero-bg img');
+    function handleHeroParallax() {
+      if (!heroBg) return;
       const scrolled = window.scrollY;
       if (scrolled < window.innerHeight) {
         heroBg.style.transform = `translateY(${scrolled * 0.3}px) scale(1.1)`;
       }
-    }, { passive: true });
-  }
+    }
+    if (heroBg && window.innerWidth > 768) {
+      window.addEventListener('scroll', handleHeroParallax, { passive: true });
+    }
 
-  // ── 14. EVENTS TICKER DUPLICATION ────────────────────────────
-  const tickerInners = document.querySelectorAll('.events-scroll-inner, .ticker-inner');
-  tickerInners.forEach(ticker => {
-    // Duplicate content for seamless loop
-    ticker.innerHTML += ticker.innerHTML;
-  });
+    // ── 14. EVENTS TICKER DUPLICATION ────────────────────────────
+    const tickerInners = document.querySelectorAll('.events-scroll-inner, .ticker-inner');
+    tickerInners.forEach(ticker => {
+      // Duplicate content for seamless loop
+      if (!ticker.dataset.duplicated) {
+        ticker.innerHTML += ticker.innerHTML;
+        ticker.dataset.duplicated = 'true';
+      }
+    });
 
-
+    // Cleanup functions
+    return () => {
+      window.removeEventListener('scroll', handleNavScroll);
+      window.removeEventListener('scroll', updateActiveNav);
+      window.removeEventListener('scroll', handleBackToTopScroll);
+      window.removeEventListener('scroll', handleHeroParallax);
+      document.removeEventListener('keydown', handleEscapeKey);
+      revealObserver.disconnect();
+      counterObserver.disconnect();
+      if (cycleInterval) clearInterval(cycleInterval);
+    };
   }, []);
 
   const htmlContent = `
@@ -389,7 +409,7 @@ export default function Home() {
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="#home" class="nav-logo" aria-label="B.B. Chhatoi Higher Secondary School — Home">
-        <img src="assets/images/logo.jpg" alt="B.B. Chhatoi HSS Logo" width="48" height="48">
+        <img src="/assets/images/logo.jpg" alt="B.B. Chhatoi HSS Logo" width="48" height="48">
         <div class="nav-logo-text">
           <h1>B.B. Chhatoi Higher Secondary School</h1>
           <span>(Under Moon Light Charitable Trust)</span>
@@ -434,7 +454,7 @@ export default function Home() {
        ============================================================ -->
   <section class="hero" id="home">
     <div class="hero-bg">
-      <img src="assets/images/hero-campus.png" alt="B.B. Chhatoi Higher Secondary School Campus" width="1920" height="1080">
+      <img src="/assets/images/hero-campus.png" alt="B.B. Chhatoi Higher Secondary School Campus" width="1920" height="1080">
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-pattern"></div>
@@ -493,7 +513,7 @@ export default function Home() {
     <div class="container">
       <div class="about-grid">
         <div class="about-image reveal-left">
-          <img src="assets/images/hero-campus.png" alt="B.B. Chhatoi Higher Secondary School Campus" width="600" height="400">
+          <img src="/assets/images/hero-campus.png" alt="B.B. Chhatoi Higher Secondary School Campus" width="600" height="400">
           <div class="about-image-badge">Est. under MLCT (Regd. No. 48/09)</div>
         </div>
         <div class="about-content reveal-right">
@@ -644,7 +664,7 @@ export default function Home() {
         <!-- +2 Science -->
         <div class="course-card">
           <div class="course-card-image">
-            <img src="assets/images/science-lab.png" alt="Science Laboratory at B.B. Chhatoi HSS" width="600" height="400">
+            <img src="/assets/images/science-lab.png" alt="Science Laboratory at B.B. Chhatoi HSS" width="600" height="400">
             <div class="course-card-badge">+2 Science</div>
           </div>
           <div class="course-card-body">
@@ -688,7 +708,7 @@ export default function Home() {
         <!-- +2 Arts -->
         <div class="course-card">
           <div class="course-card-image">
-            <img src="assets/images/arts-classroom.png" alt="Arts Classroom at B.B. Chhatoi HSS" width="600" height="400">
+            <img src="/assets/images/arts-classroom.png" alt="Arts Classroom at B.B. Chhatoi HSS" width="600" height="400">
             <div class="course-card-badge">+2 Arts</div>
           </div>
           <div class="course-card-body">
@@ -1283,27 +1303,27 @@ export default function Home() {
 
       <div class="gallery-grid reveal">
         <div class="gallery-item">
-          <img src="assets/images/hero-campus.png" alt="B.B. Chhatoi HSS Campus Building" width="600" height="400">
+          <img src="/assets/images/hero-campus.png" alt="B.B. Chhatoi HSS Campus Building" width="600" height="400">
           <div class="gallery-overlay"><span>Our Campus</span></div>
         </div>
         <div class="gallery-item">
-          <img src="assets/images/science-lab.png" alt="Students in Science Laboratory" width="600" height="400">
+          <img src="/assets/images/science-lab.png" alt="Students in Science Laboratory" width="600" height="400">
           <div class="gallery-overlay"><span>Science Laboratory</span></div>
         </div>
         <div class="gallery-item">
-          <img src="assets/images/arts-classroom.png" alt="Arts Classroom Session" width="600" height="400">
+          <img src="/assets/images/arts-classroom.png" alt="Arts Classroom Session" width="600" height="400">
           <div class="gallery-overlay"><span>Classroom Learning</span></div>
         </div>
         <div class="gallery-item">
-          <img src="assets/images/hostel.png" alt="Student Hostel Building" width="600" height="400">
+          <img src="/assets/images/hostel.png" alt="Student Hostel Building" width="600" height="400">
           <div class="gallery-overlay"><span>Hostel Facility</span></div>
         </div>
         <div class="gallery-item">
-          <img src="assets/images/sports.png" alt="Students Playing Sports" width="600" height="400">
+          <img src="/assets/images/sports.png" alt="Students Playing Sports" width="600" height="400">
           <div class="gallery-overlay"><span>Sports Activities</span></div>
         </div>
         <div class="gallery-item">
-          <img src="assets/images/cultural.png" alt="Cultural Program Performance" width="600" height="400">
+          <img src="/assets/images/cultural.png" alt="Cultural Program Performance" width="600" height="400">
           <div class="gallery-overlay"><span>Cultural Events</span></div>
         </div>
       </div>
@@ -1444,7 +1464,7 @@ export default function Home() {
         <!-- About -->
         <div class="footer-about">
           <div class="footer-logo">
-            <img src="assets/images/logo.jpg" alt="B.B. Chhatoi HSS Logo" width="48" height="48">
+            <img src="/assets/images/logo.jpg" alt="B.B. Chhatoi HSS Logo" width="48" height="48">
             <div>
               <h3>B.B. Chhatoi HSS</h3>
               <span>Under Moon Light Charitable Trust</span>

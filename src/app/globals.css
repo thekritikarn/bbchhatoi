@@ -486,7 +486,7 @@ p {
 
 /* Mobile menu overlay */
 .mobile-menu {
-  display: none;
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
@@ -494,19 +494,23 @@ p {
   bottom: 0;
   background: rgba(15, 61, 38, 0.98);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   z-index: 999;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transform: translateY(-20px);
-  transition: var(--transition-slow);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
 }
 
 .mobile-menu.active {
-  display: flex;
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
   transform: translateY(0);
 }
 
@@ -536,12 +540,13 @@ p {
   min-height: 100vh;
   min-height: 100svh;
   margin-top: -120px;
+  padding-top: 70px; /* Shift content centering below sticky navbar slightly raised */
+  padding-bottom: 60px;
   display: flex;
   align-items: center;
   overflow: hidden;
   background: var(--primary-dark);
 }
-
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -578,12 +583,11 @@ p {
   );
   background-size: 30px 30px;
 }
-
 .hero-content {
   position: relative;
   z-index: 10;
   max-width: 780px;
-  padding: 5rem 0 6rem;
+  padding: 2.4rem 0 6rem;
 }
 
 .hero-trust-badge {
@@ -711,8 +715,8 @@ p {
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
-    padding-top: 100px;
-    padding-bottom: 60px;
+    padding-top: 110px; /* Safe padding to push content below mobile navbar slightly raised */
+    padding-bottom: 40px;
   }
 
   .hero-stats {
@@ -2553,7 +2557,7 @@ p {
   }
 
   .hero-content {
-    padding: 6rem 0 2rem;
+    padding: 2.6rem 0 2rem;
   }
 
   .hero-stats {
@@ -2601,5 +2605,64 @@ p {
   body {
     font-size: 12pt;
     color: #000;
+  }
+}
+
+/* ============================================================
+   31. ADDITIONS FOR NAVBAR & MOBILE RESPONSIVENESS
+   ============================================================ */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Maintain header visibility and contrast when mobile menu is active */
+.navbar:has(.nav-toggle.active) {
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.navbar:has(.nav-toggle.active) .nav-logo-text h1 {
+  color: var(--white) !important;
+}
+
+.navbar:has(.nav-toggle.active) .nav-logo-text span {
+  color: var(--gold-200) !important;
+}
+
+.navbar:has(.nav-toggle.active) .nav-toggle span {
+  background: var(--white) !important;
+}
+
+/* Prevent logo collision on mobile */
+@media (max-width: 768px) {
+  .nav-logo {
+    max-width: calc(100% - 50px);
+  }
+}
+
+/* Tablet / Medium Screen Optimization to prevent nav links wrap/overlap */
+@media (max-width: 1200px) and (min-width: 961px) {
+  .nav-links {
+    gap: 1.25rem;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+  }
+  .nav-cta {
+    padding: 0.5rem 1.25rem !important;
+    font-size: 0.8rem !important;
+  }
+  .nav-logo-text h1 {
+    font-size: 0.85rem;
+  }
+  .nav-logo-text span {
+    font-size: 0.6rem;
   }
 }

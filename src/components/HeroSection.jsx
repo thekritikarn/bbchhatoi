@@ -51,7 +51,7 @@ export default function HeroSection() {
         </h1>
         
         <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-10 h-8 font-light italic">
-          "{typedText}<span className="animate-pulse">|</span>"
+          &ldquo;{typedText}<span className="animate-pulse">|</span>&rdquo;
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>

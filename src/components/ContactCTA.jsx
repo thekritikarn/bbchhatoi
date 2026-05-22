@@ -3,9 +3,9 @@ import ScrollReveal from "./ScrollReveal";
 
 const contacts = [
   {
-    label: "Principal",
-    value: "+91 82492 38846",
-    href: "tel:+918249238846",
+    label: "Principal Office",
+    value: "+91 86372 64915",
+    href: "tel:+918637264915",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" />
@@ -36,7 +36,7 @@ const contacts = [
   {
     label: "Address",
     value: "Dhodra, Papadahandi, Nabarangpur, Odisha — 764059",
-    href: "https://maps.google.com/?q=Dhodra+Nabarangpur+Odisha",
+    href: "https://maps.google.com/?q=B.B.+CHHATOI+SCHOOL+%26+COLLEGE+OF+NURSING",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
@@ -64,14 +64,13 @@ export default function ContactCTA() {
               <span>Hear From You</span>
             </h2>
             <p className="contact-cta-sub">
-              Whether you have questions about admission, fee structure, hostel, or anything else — reach out and
-              we&apos;ll get back to you promptly.
+              Whether you have questions about admissions, streams, hostel accommodation, or the application process — reach out and we&apos;ll respond promptly.
             </p>
 
             <div className="contact-cta-actions">
-              <Link href="/contact" className="btn btn-primary btn-lg">
-                Send an Enquiry
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <Link href="/contact" className="btn btn-primary btn-lg contact-cta-send">
+                Send an Inquiry
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="btn-arrow-icon">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
@@ -79,7 +78,7 @@ export default function ContactCTA() {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" />
                 </svg>
-                Call Now
+                Call Support Desk
               </a>
             </div>
           </ScrollReveal>

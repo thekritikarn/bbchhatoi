@@ -2794,13 +2794,18 @@ p {
 }
 
 /* Map Wrap Styling */
+.map-section-wrapper {
+  max-width: 768px; /* Half-screen / tablet size width */
+  margin: var(--space-2xl) auto 0;
+  width: 100%;
+}
+
 .map-wrapper-card {
   background: var(--white);
   border: 1px solid var(--gray-100);
   border-radius: var(--radius-xl);
   padding: var(--space-md);
   box-shadow: var(--shadow-sm);
-  margin-top: var(--space-md);
 }
 
 .map-card-header h5 {

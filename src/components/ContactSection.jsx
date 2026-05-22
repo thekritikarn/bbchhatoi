@@ -163,34 +163,6 @@ export default function ContactSection({ isPreview = false }) {
                 </div>
               </div>
  
-              {/* Map */}
-              {!isPreview && (
-                <div className="map-wrapper-card">
-                  <div className="map-card-header">
-                    <span className="map-badge">Interactive Map</span>
-                    <h5>Dhodra Campus Location</h5>
-                  </div>
-                  <div className="map-container">
-                    <iframe
-                      src="https://maps.google.com/maps?q=B.B.%20CHHATOI%20SCHOOL%20%26%20COLLEGE%20OF%20NURSING&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                      allowFullScreen=""
-                      loading="lazy"
-                      title="B.B. Chhatoi HSS Location Map"
-                    ></iframe>
-                  </div>
-                  <a
-                    href="https://maps.google.com/?q=B.B.+CHHATOI+SCHOOL+%26+COLLEGE+OF+NURSING"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="map-directions-btn"
-                  >
-                    Open in Google Maps
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="btn-directions-arrow">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
-                </div>
-              )}
             </ScrollReveal>
  
             {/* Right: Inquiry Form */}
@@ -322,6 +294,37 @@ export default function ContactSection({ isPreview = false }) {
               </form>
             </ScrollReveal>
           </div>
+
+          {/* Map Section Below */}
+          {!isPreview && (
+            <ScrollReveal className="map-section-wrapper reveal">
+              <div className="map-wrapper-card">
+                <div className="map-card-header">
+                  <span className="map-badge">Interactive Map</span>
+                  <h5>Dhodra Campus Location</h5>
+                </div>
+                <div className="map-container">
+                  <iframe
+                    src="https://maps.google.com/maps?q=B.B.%20CHHATOI%20SCHOOL%20%26%20COLLEGE%20OF%20NURSING&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                    allowFullScreen=""
+                    loading="lazy"
+                    title="B.B. Chhatoi HSS Location Map"
+                  ></iframe>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=B.B.+CHHATOI+SCHOOL+%26+COLLEGE+OF+NURSING"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="map-directions-btn"
+                >
+                  Open in Google Maps
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="btn-directions-arrow">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </ScrollReveal>
+          )}
         </div>
       </section>
     </>

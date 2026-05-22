@@ -192,7 +192,7 @@ export default function RulesSection() {
   return (
     <section className="section section-alt" id="rules">
       <div className="container">
-        <ScrollReveal className="text-center reveal" style={{ marginBottom: "var(--space-3xl)" }}>
+        <ScrollReveal className="text-center reveal rules-section-header">
           <span className="section-label">Institutional Guidelines</span>
           <h2 className="section-title">Rules & Regulations</h2>
           <p className="section-subtitle">
@@ -245,7 +245,7 @@ export default function RulesSection() {
         </div>
 
         {/* Anti-Ragging compliance callout */}
-        <ScrollReveal className="rules-compliance-banner reveal" style={{ marginTop: "var(--space-3xl)" }}>
+        <ScrollReveal className="rules-compliance-banner reveal">
           <div className="compliance-banner-inner">
             <div className="compliance-icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

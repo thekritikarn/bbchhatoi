@@ -2141,6 +2141,10 @@ p {
 /* ============================================================
    16. RULES & REGULATIONS (Dashboard)
    ============================================================ */
+.rules-section-header {
+  margin-bottom: var(--space-3xl);
+}
+
 .rules-dashboard {
   display: grid;
   grid-template-columns: 1.1fr 2.9fr;
@@ -2386,6 +2390,7 @@ p {
   border-radius: var(--radius-xl);
   padding: var(--space-lg) var(--space-xl);
   box-shadow: var(--shadow-sm);
+  margin-top: var(--space-3xl);
 }
 
 .compliance-banner-inner {
@@ -2461,6 +2466,10 @@ p {
    RESPONSIVE OVERRIDES FOR RULES
    ============================================================ */
 @media (max-width: 992px) {
+  .rules-section-header {
+    margin-bottom: var(--space-xl);
+  }
+
   .rules-dashboard {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
@@ -2468,19 +2477,22 @@ p {
 
   .rules-sidebar {
     position: static;
-    padding: 0.5rem;
-    border-radius: var(--radius-lg);
+    padding: 0;
     background: transparent;
     border: none;
     box-shadow: none;
+    margin-bottom: var(--space-sm);
   }
 
   .rules-tabs-list {
     flex-direction: row;
+    flex-wrap: nowrap !important;
     overflow-x: auto;
-    padding-bottom: 0.5rem;
-    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    margin: 0 -1.5rem;
+    gap: 0.75rem;
     scrollbar-width: none; /* Firefox */
+    -webkit-overflow-scrolling: touch;
   }
 
   .rules-tabs-list::-webkit-scrollbar {
@@ -2489,16 +2501,26 @@ p {
 
   .rules-tab-btn {
     white-space: nowrap;
-    padding: 0.65rem 1rem;
+    flex-shrink: 0;
+    padding: 0.65rem 1.25rem;
     font-size: 0.875rem;
     background: var(--white);
-    border: 1px solid var(--gray-200);
+    border: 1px solid var(--gray-200) !important;
     border-radius: var(--radius-full);
+    color: var(--text-muted);
+    transition: var(--transition-base);
   }
 
   .rules-tab-btn.active {
-    border-left-width: 1px;
-    border-color: var(--primary);
+    background: var(--primary) !important;
+    color: var(--white) !important;
+    border: 1px solid var(--primary) !important;
+    border-left: 1px solid var(--primary) !important; /* overrides 4px gold left border */
+  }
+
+  .rules-tab-btn.active .rules-tab-icon-wrapper {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: var(--white) !important;
   }
 
   .rules-tab-chevron {
@@ -2508,6 +2530,10 @@ p {
   .rules-content-pane {
     padding: var(--space-lg);
     min-height: auto;
+  }
+
+  .rules-compliance-banner {
+    margin-top: var(--space-xl);
   }
 
   .compliance-banner-inner {
@@ -2528,8 +2554,49 @@ p {
 }
 
 @media (max-width: 640px) {
+  .rules-section-header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .rules-content-pane {
+    padding: 1.25rem 1rem;
+  }
+
+  .rules-pane-header {
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .rules-pane-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .rules-pane-header p {
+    font-size: 0.85rem;
+  }
+
   .rules-cards-grid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .rule-detail-card {
+    padding: 1rem;
+  }
+
+  .rule-card-title {
+    font-size: 0.95rem;
+  }
+
+  .rule-card-desc {
+    font-size: 0.825rem;
+    line-height: 1.5;
+  }
+
+  .rules-compliance-banner {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-lg);
+    margin-top: var(--space-lg);
   }
 }
 

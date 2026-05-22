@@ -646,9 +646,20 @@ export default function CoursesSection({ isPreview = false }) {
                   {activeStream === "science" ? "Viewing Details" : "Explore Curriculum ↓"}
                 </button>
                 <Link 
-                  href={isPreview ? "/academics" : "#fees"} 
+                  href={isPreview ? "/academics?stream=science#fees" : "#fees"} 
                   className="btn btn-secondary btn-sm"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isPreview) {
+                      e.preventDefault();
+                      const feesEl = document.getElementById("fees");
+                      if (feesEl) {
+                        feesEl.scrollIntoView({ behavior: "smooth" });
+                      }
+                      const event = new CustomEvent("changeFeeTab", { detail: { stream: "science" } });
+                      window.dispatchEvent(event);
+                    }
+                  }}
                 >
                   View Fees structure →
                 </Link>
@@ -730,9 +741,20 @@ export default function CoursesSection({ isPreview = false }) {
                   {activeStream === "arts" ? "Viewing Details" : "Explore Curriculum ↓"}
                 </button>
                 <Link 
-                  href={isPreview ? "/academics" : "#fees"} 
+                  href={isPreview ? "/academics?stream=arts#fees" : "#fees"} 
                   className="btn btn-secondary btn-sm"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isPreview) {
+                      e.preventDefault();
+                      const feesEl = document.getElementById("fees");
+                      if (feesEl) {
+                        feesEl.scrollIntoView({ behavior: "smooth" });
+                      }
+                      const event = new CustomEvent("changeFeeTab", { detail: { stream: "arts" } });
+                      window.dispatchEvent(event);
+                    }
+                  }}
                 >
                   View Fees structure →
                 </Link>

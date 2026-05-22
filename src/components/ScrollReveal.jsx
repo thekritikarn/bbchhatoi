@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export default function ScrollReveal({ children, className = "", threshold = 0.15 }) {
+export default function ScrollReveal({ children, className = "", threshold = 0.15, ...props }) {
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function ScrollReveal({ children, className = "", threshold = 0.1
   }, [threshold]);
 
   return (
-    <div ref={elementRef} className={className}>
+    <div ref={elementRef} className={className} {...props}>
       {children}
     </div>
   );

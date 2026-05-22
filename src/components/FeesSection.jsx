@@ -1,12 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ScrollReveal from "./ScrollReveal";
 
 export default function FeesSection() {
   const [activeTab, setActiveTab] = useState("science"); // "science" or "arts"
   const [scienceSubTab, setScienceSubTab] = useState("science-hostel"); // "science-hostel" or "science-day"
   const [artsSubTab, setArtsSubTab] = useState("arts-hostel"); // "arts-hostel" or "arts-day"
+
+  useEffect(() => {
+    const handleTabChange = (e) => {
+      if (e.detail && (e.detail.stream === "science" || e.detail.stream === "arts")) {
+        setActiveTab(e.detail.stream);
+      }
+    };
+
+    window.addEventListener("changeFeeTab", handleTabChange);
+
+    // Initial check on load (e.g. navigation from other pages with query param)
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const streamParam = params.get("stream");
+      if (streamParam === "science" || streamParam === "arts") {
+        setActiveTab(streamParam);
+      }
+    }
+
+    return () => {
+      window.removeEventListener("changeFeeTab", handleTabChange);
+    };
+  }, []);
 
   return (
     <section className="section section-alt" id="fees">

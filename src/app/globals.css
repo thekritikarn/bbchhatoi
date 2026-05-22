@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    B.B. CHHATOI HIGHER SECONDARY SCHOOL — Design System
    Premium Enterprise Educational Website
    ============================================================ */
@@ -3680,3 +3680,91 @@ p {
 .contact-cta-arrow { width: 18px; height: 18px; color: rgba(255,255,255,0.3); flex-shrink: 0; margin-left: auto; transition: var(--transition-base); }
 .contact-cta-item:hover .contact-cta-arrow { color: var(--gold); transform: translateX(3px); }
 @media (max-width: 900px) { .contact-cta-grid { grid-template-columns: 1fr; gap: var(--space-xl); } }
+/* ============================================================
+   40. USP CARDS (WhyChooseUs � upgraded)
+   ============================================================ */
+.usp-card {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-lg);
+  border: 1px solid var(--gray-100);
+  border-left: 4px solid var(--primary);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+.usp-card--gold { border-left-color: var(--gold); }
+.usp-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(27,94,59,0.1); }
+.usp-card--gold:hover { box-shadow: 0 16px 40px rgba(212,160,23,0.12); }
+.usp-card-num { position: absolute; top: 1rem; right: 1rem; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; color: var(--gray-200); font-family: var(--font-body); line-height: 1; transition: color 0.25s; }
+.usp-card:hover .usp-card-num { color: var(--primary-200); }
+.usp-card--gold:hover .usp-card-num { color: var(--gold-200); }
+.usp-card-icon { width: 52px; height: 52px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-md); background: var(--primary-50); color: var(--primary); transition: var(--transition-base); }
+.usp-card--gold .usp-card-icon { background: var(--gold-50); color: var(--gold-dark); }
+.usp-card:hover .usp-card-icon { background: var(--primary); color: var(--white); transform: scale(1.05); }
+.usp-card--gold:hover .usp-card-icon { background: var(--gold); color: var(--white); }
+.usp-card-icon svg { width: 26px; height: 26px; }
+.usp-card-title { font-size: 1.0625rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; font-family: var(--font-body); }
+.usp-card-text { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0; }
+
+/* ============================================================
+   41. FACILITY CARDS (FacilitiesSection � upgraded)
+   ============================================================ */
+.facility-card { background: var(--white); border-radius: var(--radius-xl); border: 1px solid var(--gray-100); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+.facility-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(27,94,59,0.12); }
+.facility-card-accent { height: 4px; width: 100%; flex-shrink: 0; transition: height 0.25s ease; }
+.facility-card:hover .facility-card-accent { height: 6px; }
+.facility-card-body { padding: var(--space-xl) var(--space-lg); text-align: center; flex: 1; }
+.facility-card .facility-icon { width: 60px; height: 60px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md); transition: transform 0.25s ease; }
+.facility-card:hover .facility-icon { transform: scale(1.08); }
+.facility-card .facility-icon svg { width: 28px; height: 28px; }
+.facility-card h4 { font-family: var(--font-body); font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.375rem; }
+.facility-desc { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem; line-height: 1.5; }
+.facility-detail { font-size: 0.775rem; color: var(--text-light); margin-bottom: 0; line-height: 1.6; border-top: 1px dashed var(--gray-100); padding-top: 0.5rem; margin-top: 0.5rem; }
+
+/* ============================================================
+   42. SUPPORT CARDS (StudentSupport � upgraded)
+   ============================================================ */
+.support-card { position: relative; text-align: center; padding: var(--space-xl) var(--space-md); border-radius: var(--radius-xl); background: var(--white); border: 1px solid var(--gray-100); transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease; }
+.support-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(212,160,23,0.12); background: var(--gold-50); border-color: var(--gold-200); }
+.support-eligible-badge { position: absolute; top: 0.875rem; right: 0.875rem; display: inline-flex; align-items: center; gap: 0.25rem; background: var(--primary-50); color: var(--primary); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: var(--radius-full); border: 1px solid var(--primary-100); transition: var(--transition-base); }
+.support-card:hover .support-eligible-badge { background: var(--gold-100); color: var(--gold-dark); border-color: var(--gold-200); }
+.support-icon { width: 56px; height: 56px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md); background: var(--gold-50); color: var(--gold-dark); transition: var(--transition-base); }
+.support-card:hover .support-icon { background: var(--gold); color: var(--white); transform: scale(1.08); }
+.support-icon svg { width: 26px; height: 26px; }
+.support-card h4 { font-family: var(--font-body); font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-dark); }
+.support-card p { font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.6; }
+.support-philosophy { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); border-radius: var(--radius-2xl); padding: var(--space-2xl); }
+.support-philosophy-inner { display: flex; align-items: flex-start; gap: var(--space-xl); }
+.support-philosophy-icon { width: 40px; height: 40px; color: var(--gold); flex-shrink: 0; margin-top: 0.25rem; }
+.support-philosophy-heading { font-size: 0.875rem; font-weight: 700; color: var(--gold-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.625rem; font-family: var(--font-body); }
+.support-philosophy-text { font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.75; font-style: italic; margin: 0; }
+@media (max-width: 768px) { .support-philosophy-inner { flex-direction: column; gap: var(--space-md); } .support-philosophy-icon { width: 32px; height: 32px; } }
+
+/* ============================================================
+   43. CAMPUS EXPLORER � desc preview + 2-col modal
+   ============================================================ */
+.campus-card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.375rem; margin-bottom: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.campus-card .campus-card-body { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 1rem 1.25rem 1.25rem; }
+.campus-card .campus-card-icon { width: 34px; height: 34px; margin-bottom: 0.5rem; }
+.campus-card-img-wrap { height: 240px; }
+.campus-modal-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 0; height: 100%; }
+.campus-modal-img-wrap { position: relative; overflow: hidden; }
+.campus-modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 700px) { .campus-modal-inner { grid-template-columns: 1fr; grid-template-rows: 200px 1fr; } .campus-modal-img-wrap { height: 200px; } }
+
+/* ============================================================
+   44. GALLERY � always-visible caption bar
+   ============================================================ */
+.gallery-item::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to top, rgba(10,30,18,0.72), transparent); pointer-events: none; z-index: 2; }
+.gallery-item:hover::after { height: 60%; }
+.gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; display: flex; align-items: center; gap: 0.5rem; padding: 0.625rem 0.875rem; }
+.gallery-caption-icon { font-size: 0.875rem; line-height: 1; }
+.gallery-caption-label { flex: 1; font-size: 0.8125rem; font-weight: 600; color: var(--white); text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+.gallery-caption-zoom { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: var(--white); transition: background 0.2s ease, transform 0.2s ease; }
+.gallery-caption-zoom svg { width: 14px; height: 14px; }
+.gallery-item:hover .gallery-caption-zoom { background: var(--gold); transform: scale(1.1); }
+.lightbox-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.lightbox-inner img { max-width: 90%; max-height: 82vh; border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+.lightbox-label { color: rgba(255,255,255,0.85); font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.gallery-overlay { display: none; }

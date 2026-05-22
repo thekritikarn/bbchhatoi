@@ -59,7 +59,7 @@ const spaces = [
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="12" cy="12" r="10" />
-        <path d="M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M14.12 9.88l4.24-4.24M9.88 14.12l-4.24 4.24M12 2v4M12 18v4M2 12h4M18 12h4" />
+        <path d="M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M14.12 9.88l4.24-4.24M9.88 14.12l-4.24 4.24" />
       </svg>
     ),
   },
@@ -155,6 +155,7 @@ export default function CampusExplorer() {
                 <div className="campus-card-text">
                   <h3 className="campus-card-title">{space.title}</h3>
                   <p className="campus-card-subtitle">{space.subtitle}</p>
+                  <p className="campus-card-desc">{space.desc}</p>
                 </div>
               </div>
             </button>
@@ -187,52 +188,55 @@ export default function CampusExplorer() {
               </svg>
             </button>
 
-            {/* Image */}
-            <div className="campus-modal-img-wrap">
-              <img src={opened.image} alt={opened.title} />
-              <span className="campus-tag campus-modal-tag" style={{ background: opened.tagColor }}>
-                {opened.tag}
-              </span>
-            </div>
-
-            {/* Content */}
-            <div className="campus-modal-content">
-              <div className="campus-modal-icon" style={{ color: opened.tagColor }}>
-                {opened.icon}
-              </div>
-              <h3 className="campus-modal-title">{opened.title}</h3>
-              <p className="campus-modal-sub">{opened.subtitle}</p>
-              <p className="campus-modal-desc">{opened.desc}</p>
-
-              {/* Nav between cards */}
-              <div className="campus-modal-nav">
-                <button
-                  className="campus-nav-btn"
-                  onClick={() => {
-                    const idx = spaces.findIndex((s) => s.id === active);
-                    setActive(spaces[(idx - 1 + spaces.length) % spaces.length].id);
-                  }}
-                >
-                  ← Previous
-                </button>
-                <span className="campus-nav-dots">
-                  {spaces.map((s) => (
-                    <span
-                      key={s.id}
-                      className={`campus-dot ${s.id === active ? "active" : ""}`}
-                      onClick={() => setActive(s.id)}
-                    />
-                  ))}
+            {/* Two-column layout: image left, content right */}
+            <div className="campus-modal-inner">
+              {/* Image */}
+              <div className="campus-modal-img-wrap">
+                <img src={opened.image} alt={opened.title} />
+                <span className="campus-tag campus-modal-tag" style={{ background: opened.tagColor }}>
+                  {opened.tag}
                 </span>
-                <button
-                  className="campus-nav-btn"
-                  onClick={() => {
-                    const idx = spaces.findIndex((s) => s.id === active);
-                    setActive(spaces[(idx + 1) % spaces.length].id);
-                  }}
-                >
-                  Next →
-                </button>
+              </div>
+
+              {/* Content */}
+              <div className="campus-modal-content">
+                <div className="campus-modal-icon" style={{ color: opened.tagColor }}>
+                  {opened.icon}
+                </div>
+                <h3 className="campus-modal-title">{opened.title}</h3>
+                <p className="campus-modal-sub">{opened.subtitle}</p>
+                <p className="campus-modal-desc">{opened.desc}</p>
+
+                {/* Nav between cards */}
+                <div className="campus-modal-nav">
+                  <button
+                    className="campus-nav-btn"
+                    onClick={() => {
+                      const idx = spaces.findIndex((s) => s.id === active);
+                      setActive(spaces[(idx - 1 + spaces.length) % spaces.length].id);
+                    }}
+                  >
+                    ← Previous
+                  </button>
+                  <span className="campus-nav-dots">
+                    {spaces.map((s) => (
+                      <span
+                        key={s.id}
+                        className={`campus-dot ${s.id === active ? "active" : ""}`}
+                        onClick={() => setActive(s.id)}
+                      />
+                    ))}
+                  </span>
+                  <button
+                    className="campus-nav-btn"
+                    onClick={() => {
+                      const idx = spaces.findIndex((s) => s.id === active);
+                      setActive(spaces[(idx + 1) % spaces.length].id);
+                    }}
+                  >
+                    Next →
+                  </button>
+                </div>
               </div>
             </div>
           </div>

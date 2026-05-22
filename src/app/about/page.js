@@ -1,4 +1,5 @@
 import AboutSection from "@/components/AboutSection";
+import MissionVision from "@/components/MissionVision";
 
 export const metadata = {
   title: "About Us | B.B. Chhatoi Higher Secondary School",
@@ -9,6 +10,7 @@ export default function AboutPage() {
   return (
     <main>
       <AboutSection isPreview={false} />
+      <MissionVision />
     </main>
   );
 }

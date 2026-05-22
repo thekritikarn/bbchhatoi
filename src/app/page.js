@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
+import MissionVision from "@/components/MissionVision";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import CoursesSection from "@/components/CoursesSection";
 import AdmissionSection from "@/components/AdmissionSection";
@@ -11,6 +12,7 @@ export default function Home() {
     <main>
       <HeroSection />
       <AboutSection isPreview={true} />
+      <MissionVision />
       <WhyChooseUs />
       <CoursesSection isPreview={true} />
       <AdmissionSection isPreview={true} />

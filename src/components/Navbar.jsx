@@ -1,123 +1,142 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  const navItems = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "courses", label: "Courses" },
+    { id: "fees", label: "Fees" },
+    { id: "admission", label: "Admission" },
+    { id: "facilities", label: "Facilities" },
+    { id: "gallery", label: "Gallery" },
+    { id: "contact", label: "Contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      // The events bar takes up ~40px. 
-      setScrolled(window.scrollY > 40);
+      // Sticky navbar (events-bar is 40px high)
+      setScrolled(window.scrollY >= 40);
+
+      // Active section highlight
+      const sections = ["home", "about", "courses", "fees", "admission", "facilities", "gallery", "contact"];
+      const scrollPos = window.scrollY + 180; // offset for nav height
+
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Run once on mount
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ease-in-out top-0 left-0 ${
-        scrolled ? "glass shadow-md py-2" : "bg-transparent py-4 mt-10"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-105">
-              <Image
-                src="/assets/images/logo.jpg"
-                alt="B.B. Chhatoi HSS Logo"
-                fill
-                className="object-contain rounded-full shadow-sm"
-              />
-            </div>
-            <div className="flex flex-col justify-center">
-              <h1
-                className={`font-bold transition-colors duration-300 ${
-                  scrolled ? "text-primary text-sm sm:text-base" : "text-white text-base sm:text-lg"
-                }`}
-              >
-                B.B. Chhatoi Higher Secondary School
-              </h1>
-              <span
-                className={`text-xs transition-colors duration-300 ${
-                  scrolled ? "text-primary-light" : "text-gray-200"
-                }`}
-              >
-                (Under Moon Light Charitable Trust)
-              </span>
-            </div>
-          </Link>
+  // Sync body overflow when mobile menu is toggled
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            {["Home", "About", "Courses", "Facilities", "Gallery", "Contact"].map((item) => (
-              <Link
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className={`text-sm font-medium transition-colors hover:text-gold ${
-                  scrolled ? "text-primary hover:text-primary-light" : "text-white"
-                }`}
+  const handleSmoothScroll = (e, targetId) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const target = document.getElementById(targetId);
+    if (target) {
+      const navHeight = scrolled ? 80 : 120; // estimate navbar height
+      const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+      window.scrollTo({ top: targetPos, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <>
+      <nav className={`navbar ${scrolled ? "scrolled" : ""}`} id="navbar">
+        <div className="container">
+          <a
+            href="#home"
+            className="nav-logo"
+            aria-label="B.B. Chhatoi Higher Secondary School — Home"
+            onClick={(e) => handleSmoothScroll(e, "home")}
+          >
+            <img src="/assets/images/logo.jpg" alt="B.B. Chhatoi HSS Logo" width="48" height="48" />
+            <div className="nav-logo-text">
+              <h1>B.B. Chhatoi Higher Secondary School</h1>
+              <span>(Under Moon Light Charitable Trust)</span>
+            </div>
+          </a>
+
+          <div className="nav-links">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={activeSection === item.id ? "active" : ""}
+                onClick={(e) => handleSmoothScroll(e, item.id)}
               >
-                {item}
-              </Link>
+                {item.label}
+              </a>
             ))}
             <a
-              href="#apply"
-              className={`px-5 py-2 rounded-full font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 ${
-                scrolled
-                  ? "bg-primary text-white hover:bg-primary-light"
-                  : "bg-gold text-primary hover:bg-gold-light"
-              }`}
+              href="#admission"
+              className="nav-cta"
+              onClick={(e) => handleSmoothScroll(e, "admission")}
             >
               Apply Now
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`p-2 rounded-md ${
-                scrolled ? "text-primary" : "text-white"
-              } hover:bg-black/10 transition`}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu Dropdown */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        } bg-white shadow-xl absolute w-full`}
-      >
-        <div className="px-4 pt-2 pb-6 space-y-2">
-          {["Home", "About", "Courses", "Facilities", "Gallery", "Contact"].map((item) => (
-            <Link
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-base font-medium text-primary hover:text-gold hover:bg-gray-50 rounded-md"
-            >
-              {item}
-            </Link>
-          ))}
-          <a
-            href="#apply"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block w-full text-center mt-4 px-5 py-3 rounded-md font-bold bg-primary text-white hover:bg-primary-light shadow-md"
+          <button
+            className={`nav-toggle ${mobileMenuOpen ? "active" : ""}`}
+            aria-label="Toggle navigation menu"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            Apply Now
-          </a>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${mobileMenuOpen ? "active" : ""}`}>
+        {navItems.map((item) => (
+          <a
+            key={item.id}
+            href={`#${item.id}`}
+            onClick={(e) => handleSmoothScroll(e, item.id)}
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          href="#admission"
+          className="btn btn-primary"
+          style={{ marginTop: "1rem" }}
+          onClick={(e) => handleSmoothScroll(e, "admission")}
+        >
+          Apply Now
+        </a>
       </div>
-    </nav>
+    </>
   );
 }

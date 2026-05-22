@@ -1,53 +1,98 @@
+"use client";
+
+import ScrollReveal from "./ScrollReveal";
+
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 bg-primary/20 z-10"></div>
-            <img 
-              src="/assets/images/campus.jpg" 
-              alt="Campus Building" 
-              className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur p-6 rounded-xl z-20 shadow-lg">
-              <h3 className="text-xl font-bold text-primary mb-2">Since 2016</h3>
-              <p className="text-sm text-gray-600">Empowering rural youth through quality education</p>
-            </div>
-          </div>
-          
-          <div>
-            <h2 className="text-sm font-bold text-gold tracking-widest uppercase mb-2">About The Institution</h2>
-            <h3 className="text-3xl sm:text-4xl font-extrabold text-primary mb-6 leading-tight">
-              A Legacy of <br />Academic Excellence
-            </h3>
-            <div className="space-y-6 text-gray-600 text-lg">
+    <>
+      {/* ============================================================
+           ABOUT SECTION
+           ============================================================ */}
+      <section className="section" id="about">
+        <div className="container">
+          <div className="about-grid">
+            <ScrollReveal className="about-image reveal-left">
+              <img
+                src="/assets/images/hero-campus.png"
+                alt="B.B. Chhatoi Higher Secondary School Campus"
+                width="600"
+                height="400"
+              />
+              <div className="about-image-badge">Est. under MLCT (Regd. No. 48/09)</div>
+            </ScrollReveal>
+            <ScrollReveal className="about-content reveal-right">
+              <span className="section-label">About Our Institution</span>
+              <h2 className="section-title">B.B. Chhatoi Higher Secondary School</h2>
               <p>
-                Founded in 2016 by the Moon Light Charitable Trust, <strong>B.B. Chhatoi Higher Secondary School</strong> is a premier educational institution located in Dhodra, Nabarangpur, Odisha.
+                Named after the visionary <strong>Late Shri Bhramarbar Chhatoi</strong>, our institution stands as a beacon
+                of educational empowerment in the tribal belt of Nabarangpur, Odisha. Operating under the{" "}
+                <strong>Moon Light Charitable Trust</strong>, we are committed to providing quality education that is
+                accessible to all, regardless of financial background.
               </p>
               <p>
-                We offer both +2 Science and +2 Arts streams under the Council of Higher Secondary Education (CHSE), Odisha. Our mission is to provide world-class infrastructure and affordable education to the rural and tribal youth of Nabarangpur district and beyond.
+                We offer +2 Science and +2 Arts programs affiliated to the{" "}
+                <strong>Council of Higher Secondary Education (CHSE), Odisha</strong>, with dedicated support for
+                competitive examinations including NEET and OJEE. Our mission is simple — equal education opportunities
+                for every student.
               </p>
-              
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-                {[
-                  "Experienced Faculty",
-                  "Modern Laboratories",
-                  "Separate Hostels",
-                  "Green Campus"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center text-gold">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
-                    </div>
-                    <span className="font-medium text-gray-800">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+
+              <div className="recognition-badges">
+                <div className="recognition-badge">
+                  <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  CHSE Odisha
+                </div>
+                <div className="recognition-badge">
+                  <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  SAMS Odisha
+                </div>
+                <div className="recognition-badge">
+                  <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Director of HS Education
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* ============================================================
+           FOUNDER TRIBUTE
+           ============================================================ */}
+      <section className="section founder-section">
+        <div className="container">
+          <ScrollReveal className="founder-content reveal">
+            <span className="section-label" style={{ color: "var(--gold-light)" }}>
+              Founder&apos;s Vision
+            </span>
+            <div className="founder-quote">
+              Education is the most powerful tool for service to mankind. Every student, regardless of economic status,
+              deserves access to quality learning. Our mission is to empower the tribal and rural youth of Odisha
+              through education, creating employment opportunities and building a brighter future.
+            </div>
+            <div className="founder-divider"></div>
+            <div className="founder-name">Late Shri Bhramarbar Chhatoi</div>
+            <div className="founder-title">Founder — Moon Light Charitable Trust</div>
+          </ScrollReveal>
+        </div>
+      </section>
+    </>
   );
 }

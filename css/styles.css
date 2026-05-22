@@ -299,18 +299,19 @@ p {
    5. NAVIGATION
    ============================================================ */
 .navbar {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+  position: relative;
   left: 0;
   right: 0;
   z-index: 1000;
   padding: 1rem 0;
   transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
   background: transparent;
+  width: 100%;
 }
 
 .navbar.scrolled {
+  position: fixed;
+  top: 0;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);

@@ -5,16 +5,32 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── 1. NAVBAR SCROLL EFFECT ──────────────────────────────────
-  const navbar = document.querySelector('.navbar');
+  // ── 2. STICKY NAVBAR ON SCROLL ───────────────────────────────
+  const navbar = document.getElementById('navbar');
   const eventsBar = document.querySelector('.events-bar');
-
+  
+  // Create a placeholder to prevent page jump when navbar becomes fixed
+  const navPlaceholder = document.createElement('div');
+  navPlaceholder.style.display = 'none';
+  if (navbar && navbar.parentNode) {
+    navbar.parentNode.insertBefore(navPlaceholder, navbar.nextSibling);
+  }
+  
   function handleNavScroll() {
+    if (!navbar) return;
     const scrollThreshold = eventsBar ? eventsBar.offsetHeight : 40;
+    
     if (window.scrollY >= scrollThreshold) {
-      navbar.classList.add('scrolled');
+      if (!navbar.classList.contains('scrolled')) {
+        navbar.classList.add('scrolled');
+        navPlaceholder.style.height = `${navbar.offsetHeight}px`;
+        navPlaceholder.style.display = 'block';
+      }
     } else {
-      navbar.classList.remove('scrolled');
+      if (navbar.classList.contains('scrolled')) {
+        navbar.classList.remove('scrolled');
+        navPlaceholder.style.display = 'none';
+      }
     }
   }
 

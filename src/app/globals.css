@@ -2500,6 +2500,7 @@ p {
   }
 
   .rules-tab-btn {
+    width: auto !important;
     white-space: nowrap;
     flex-shrink: 0;
     padding: 0.65rem 1.25rem;

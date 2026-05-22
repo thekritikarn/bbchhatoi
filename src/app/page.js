@@ -1420,7 +1420,7 @@ export default function Home() {
             </div>
             <div>
               <h4>Phone</h4>
-              <p><a href="tel:+918637264915">+91 8637264915</a> (School)<br>
+              <p><a href="tel:+918637264915">+91 8637264915</a> (Principal)<br>
               <a href="tel:+919668183662">+91 9668183662</a> (Admission Incharge)<br>
               <a href="tel:+919937653872">+91 9937653872</a> (Trust)</p>
             </div>
@@ -1432,7 +1432,7 @@ export default function Home() {
             </div>
             <div>
               <h4>Email</h4>
-              <p><a href="mailto:bbchhatoihss@gmail.com">bbchhatoihss@gmail.com</a> (School/Principal)<br>
+              <p><a href="mailto:bbchhatoihss@gmail.com">bbchhatoihss@gmail.com</a> (Principal)<br>
               <a href="mailto:uniquesangram1@gmail.com">uniquesangram1@gmail.com</a> (Admission Incharge)</p>
             </div>
           </div>
@@ -1557,16 +1557,16 @@ export default function Home() {
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
             <span>
-              <a href="tel:+918637264915">+91 8637264915</a> (School)<br>
-              <a href="tel:+919668183662">+91 9668183662</a> (Admission)<br>
+              <a href="tel:+918637264915">+91 8637264915</a> (Principal)<br>
+              <a href="tel:+919668183662">+91 9668183662</a> (Admission Incharge)<br>
               <a href="tel:+919937653872">+91 9937653872</a> (Trust)
             </span>
           </div>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             <span>
-              <a href="mailto:bbchhatoihss@gmail.com">bbchhatoihss@gmail.com</a> (School)<br>
-              <a href="mailto:uniquesangram1@gmail.com">uniquesangram1@gmail.com</a> (Admission)
+              <a href="mailto:bbchhatoihss@gmail.com">bbchhatoihss@gmail.com</a> (Principal)<br>
+              <a href="mailto:uniquesangram1@gmail.com">uniquesangram1@gmail.com</a> (Admission Incharge)
             </span>
           </div>
         </div>

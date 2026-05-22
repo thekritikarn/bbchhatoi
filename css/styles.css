@@ -353,6 +353,7 @@ p {
   color: var(--white);
   line-height: 1.2;
   transition: var(--transition-base);
+  white-space: nowrap;
 }
 
 .navbar.scrolled .nav-logo-text h1 {
@@ -2520,8 +2521,26 @@ p {
     padding: 0 1rem;
   }
 
+  .nav-logo-text h1 {
+    white-space: normal;
+    font-size: 0.8rem;
+  }
+
+  .navbar.scrolled .nav-logo-text h1 {
+    font-size: 0.75rem;
+  }
+
+  .nav-logo-text span {
+    font-size: 0.55rem;
+  }
+
   .hero-content {
-    padding: 1rem 0;
+    padding: 6rem 0 2rem;
+  }
+
+  .hero-stats {
+    gap: 1.5rem;
+    justify-content: space-between;
   }
 
   .hero-actions {

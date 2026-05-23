@@ -2,6 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import TrustBar from "@/components/TrustBar";
 import AboutSnapshot from "@/components/AboutSnapshot";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import ScholarshipsHighlight from "@/components/ScholarshipsHighlight";
 import CoursesHighlight from "@/components/CoursesHighlight";
 import AdmissionCTA from "@/components/AdmissionCTA";
 import CampusExplorer from "@/components/CampusExplorer";
@@ -21,6 +22,7 @@ export default function Home() {
       <TrustBar />
       <AboutSnapshot />
       <WhyChooseUs />
+      <ScholarshipsHighlight />
       <CoursesHighlight />
       <AdmissionCTA />
       <CampusExplorer />

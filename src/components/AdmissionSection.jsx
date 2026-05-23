@@ -287,6 +287,46 @@ export default function AdmissionSection({ isPreview = false }) {
                 </a>
               </div>
             </ScrollReveal>
+
+            {/* Brochure Download Banner */}
+            <ScrollReveal className="guidance-banner reveal" style={{ marginTop: "2rem", background: "linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%)", borderColor: "var(--gold-200)" }}>
+              <div className="guidance-banner-content">
+                <div className="guidance-badge" style={{ background: "var(--primary-dark)", color: "var(--white)" }}>Prospectus</div>
+                <h3 style={{ color: "var(--primary-dark)" }}>Download School Brochure & Prospectus</h3>
+                <p style={{ color: "var(--primary-dark)", opacity: 0.9 }}>
+                  Get comprehensive details about school rules, fee structures, curriculum plans, teacher credentials, laboratory assets, and school highlights in one single document.
+                </p>
+                <div className="guidance-meta">
+                  <div className="guidance-meta-item" style={{ color: "var(--primary-dark)" }}>
+                    <span className="meta-icon">📂</span>
+                    <span>Format: PDF</span>
+                  </div>
+                  <div className="guidance-meta-item" style={{ color: "var(--primary-dark)" }}>
+                    <span className="meta-icon">💾</span>
+                    <span>Size: 15.3 MB</span>
+                  </div>
+                  <div className="guidance-meta-item" style={{ color: "var(--primary-dark)" }}>
+                    <span className="meta-icon">📅</span>
+                    <span>Year: 2026-27</span>
+                  </div>
+                </div>
+              </div>
+              <div className="guidance-banner-actions">
+                <a 
+                  href="/assets/pdfs/brochure.pdf" 
+                  download="BB_Chhatoi_School_Brochure_2026_27.pdf" 
+                  className="btn btn-primary"
+                  style={{ background: "var(--primary-dark)", borderColor: "var(--primary-dark)", color: "var(--white)" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="btn-icon">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  Download Brochure
+                </a>
+              </div>
+            </ScrollReveal>
           </>
         ) : (
           <div className="text-center" style={{ marginTop: "3rem" }}>

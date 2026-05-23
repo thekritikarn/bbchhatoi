@@ -69,6 +69,19 @@ export default function AdmissionCTA() {
               <Link href="/admission" className="btn btn-outline admission-outline-btn">
                 View Checklist & Details
               </Link>
+              <a 
+                href="/assets/pdfs/brochure.pdf" 
+                download="BB_Chhatoi_School_Brochure_2026_27.pdf" 
+                className="btn btn-secondary btn-lg"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: "18px", height: "18px" }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Brochure
+              </a>
             </div>
 
             {/* Contact line */}

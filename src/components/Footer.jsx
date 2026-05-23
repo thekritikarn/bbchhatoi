@@ -60,6 +60,16 @@ export default function Footer() {
               <li><Link href="/academics#fees">Fee Structure</Link></li>
               <li><Link href="/admission">Admission</Link></li>
               <li><Link href="/gallery">Gallery</Link></li>
+              <li>
+                <a 
+                  href="/assets/pdfs/brochure.pdf" 
+                  download="BB_Chhatoi_School_Brochure_2026_27.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Download Brochure
+                </a>
+              </li>
             </ul>
           </div>
 

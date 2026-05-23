@@ -9,15 +9,10 @@ export default function Footer() {
           {/* Logo & About */}
           <div className="footer-about">
             <div className="footer-logo">
-              <div className="relative w-12 h-12 bg-white rounded-full p-1" style={{ position: "relative" }}>
-                <Image
-                  src="/assets/images/logo.jpg"
-                  alt="B.B. Chhatoi HSS Logo"
-                  fill
-                  className="rounded-full"
-                  style={{ objectFit: "contain", borderRadius: "50%" }}
-                />
-              </div>
+              <img
+                src="/assets/images/logo.jpg"
+                alt="B.B. Chhatoi HSS Logo"
+              />
               <div>
                 <h3>B.B. Chhatoi HSS</h3>
                 <span>Under Moon Light Charitable Trust</span>

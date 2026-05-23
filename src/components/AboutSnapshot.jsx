@@ -51,7 +51,13 @@ export default function AboutSnapshot() {
               />
               {/* Floating founder card */}
               <div className="about-snapshot-founder">
-                <div className="about-snapshot-founder-avatar">BC</div>
+                <div className="about-snapshot-founder-avatar" style={{ overflow: "hidden", background: "none" }}>
+                  <img
+                    src="/assets/images/founder.jpg"
+                    alt="Late Shri Bhramarbar Chhatoi"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
                 <div>
                   <div className="about-snapshot-founder-name">Late Shri Bhramarbar Chhatoi</div>
                   <div className="about-snapshot-founder-role">Founder &amp; Visionary</div>

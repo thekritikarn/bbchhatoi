@@ -95,6 +95,13 @@ export default function AboutSection({ isPreview = false }) {
                 deserves access to quality learning. Our mission is to empower the tribal and rural youth of Odisha
                 through education, creating employment opportunities and building a brighter future.
               </div>
+              <div className="founder-avatar-wrap">
+                <img
+                  src="/assets/images/founder.jpg"
+                  alt="Late Shri Bhramarbar Chhatoi"
+                  className="founder-avatar-img"
+                />
+              </div>
               <div className="founder-divider"></div>
               <div className="founder-name">Late Shri Bhramarbar Chhatoi</div>
               <div className="founder-title">Founder — Moon Light Charitable Trust</div>

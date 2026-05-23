@@ -3037,6 +3037,49 @@ p {
   color: var(--gray-600);
 }
 
+/* Contact Social Links Grid */
+.contact-social-links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.contact-social-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-dark) !important;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+}
+
+.contact-social-link-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.contact-social-link-btn.whatsapp:hover {
+  background: #E8F5E9;
+  border-color: #A5D6A7;
+  color: #2E7D32 !important;
+  transform: translateX(4px);
+}
+
+.contact-social-link-btn.instagram:hover {
+  background: #FDF2F8;
+  border-color: #FBCFE8;
+  color: #BE185D !important;
+  transform: translateX(4px);
+}
+
 /* Form Card Design */
 .contact-form-card {
   background: var(--white);

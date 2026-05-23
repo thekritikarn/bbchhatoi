@@ -56,7 +56,7 @@ export default function AdmissionCTA() {
             {/* CTA buttons */}
             <div className="admission-cta-buttons">
               <a
-                href="https://samsodisha.gov.in"
+                href="https://hss.samsodisha.gov.in/newHSS/index.aspx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary btn-lg sams-btn"

@@ -6,7 +6,11 @@ export default function AdmissionSection({ isPreview = false }) {
     {
       num: 1,
       title: "Apply through SAMS Odisha",
-      text: "Register and complete the online Common Application Form (CAF) on the SAMS Odisha portal.",
+      text: "Register and complete the online Common Application Form (CAF) on the official state portal.",
+      link: {
+        text: "Apply Online (SAMS Portal)",
+        url: "https://hss.samsodisha.gov.in/newHSS/index.aspx",
+      },
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -16,7 +20,11 @@ export default function AdmissionSection({ isPreview = false }) {
     {
       num: 2,
       title: "Receive Allotment",
-      text: "Download your official allotment letter from the SAMS portal based on the selection list merit points.",
+      text: "Check selection lists and download your official allotment letter from SAMS based on merit lists.",
+      link: {
+        text: "Check Selection Status",
+        url: "https://online.samsodisha.gov.in/online_caf/junuserregistration.aspx",
+      },
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -156,6 +164,21 @@ export default function AdmissionSection({ isPreview = false }) {
               <div className="timeline-content">
                 <h4>{step.title}</h4>
                 <p>{step.text}</p>
+                {step.link && (
+                  <div className="timeline-action-wrapper">
+                    <a
+                      href={step.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="timeline-action-btn"
+                    >
+                      <span>{step.link.text}</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="timeline-btn-icon">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -187,7 +210,13 @@ export default function AdmissionSection({ isPreview = false }) {
                       </div>
                       <div className="intake-detail-item">
                         <h5>Subjects Offered:</h5>
-                        <p>{stream.subjects}</p>
+                        <div className="intake-subject-tags">
+                          {stream.subjects.split(", ").map((subject, subIdx) => (
+                            <span key={subIdx} className="subject-tag">
+                              {subject}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                       <div className="intake-detail-item">
                         <h5>Eligibility Criteria:</h5>

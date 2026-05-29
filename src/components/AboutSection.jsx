@@ -84,7 +84,8 @@ export default function AboutSection({ isPreview = false }) {
            FOUNDER TRIBUTE (Only visible on full page)
            ============================================================ */}
       {!isPreview && (
-        <section className="section founder-section">
+        <>
+          <section className="section founder-section">
           <div className="container">
             <ScrollReveal className="founder-content reveal">
               <span className="section-label" style={{ color: "var(--gold-light)" }}>
@@ -108,6 +109,118 @@ export default function AboutSection({ isPreview = false }) {
             </ScrollReveal>
           </div>
         </section>
+
+        {/* ============================================================
+             LEADERSHIP SECTION
+             ============================================================ */}
+        <section className="section leadership-section" style={{ background: "var(--off-white)" }}>
+          <div className="container">
+            <ScrollReveal className="text-center reveal" style={{ marginBottom: "var(--space-3xl)" }}>
+              <span className="section-label">Our Leadership</span>
+              <h2 className="section-title">Administration & Management</h2>
+              <p className="section-subtitle">
+                Meet the visionary leaders guiding B.B. Chhatoi Higher Secondary School towards academic and personal excellence.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid grid-2" style={{ gap: "var(--space-2xl)", maxWidth: "960px", margin: "0 auto" }}>
+              {/* Card 1: Principal */}
+              <ScrollReveal className="reveal-left">
+                <div 
+                  className="leadership-card"
+                  style={{
+                    background: "var(--white)",
+                    borderRadius: "var(--radius-lg)",
+                    overflow: "hidden",
+                    boxShadow: "var(--shadow-md)",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    padding: "var(--space-xl)",
+                    textAlign: "center",
+                    border: "1px solid var(--gray-100)"
+                  }}
+                >
+                  <div 
+                    className="leadership-image-wrap"
+                    style={{
+                      width: "160px",
+                      height: "160px",
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                      border: "4px solid var(--primary)",
+                      marginBottom: "var(--space-lg)",
+                      boxShadow: "var(--shadow-sm)"
+                    }}
+                  >
+                    <img 
+                      src="/assets/images/principal.jpg" 
+                      alt="Dr. Bijay Kumar Sahu"
+                      style={{ width: "100%", height: "100%", objectPosition: "top center", objectFit: "cover" }}
+                    />
+                  </div>
+                  <h3 style={{ fontSize: "1.25rem", color: "var(--primary-dark)", margin: "0 0 0.25rem 0" }}>Dr. Bijay Kumar Sahu</h3>
+                  <span style={{ fontSize: "0.85rem", color: "var(--gold-dark)", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "var(--space-md)" }}>
+                    Principal
+                  </span>
+                  <div style={{ width: "40px", height: "2px", background: "var(--gold)", marginBottom: "var(--space-md)" }}></div>
+                  <p style={{ fontSize: "0.925rem", color: "var(--text-muted)", lineHeight: "1.6", margin: 0, fontStyle: "italic" }}>
+                    &ldquo;At B.B. Chhatoi Higher Secondary School, we believe in nurturing not just academic excellence, but the character and potential of every student. Our dedicated faculty members and state-of-the-art facilities ensure that students from all backgrounds receive equal opportunities to learn, grow, and succeed in both board examinations and national-level competitive assessments. We welcome you to join our vibrant academic community.&rdquo;
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              {/* Card 2: Academic Coordinator */}
+              <ScrollReveal className="reveal-right">
+                <div 
+                  className="leadership-card"
+                  style={{
+                    background: "var(--white)",
+                    borderRadius: "var(--radius-lg)",
+                    overflow: "hidden",
+                    boxShadow: "var(--shadow-md)",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    padding: "var(--space-xl)",
+                    textAlign: "center",
+                    border: "1px solid var(--gray-100)"
+                  }}
+                >
+                  <div 
+                    className="leadership-image-wrap"
+                    style={{
+                      width: "160px",
+                      height: "160px",
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                      border: "4px solid var(--primary)",
+                      marginBottom: "var(--space-lg)",
+                      boxShadow: "var(--shadow-sm)"
+                    }}
+                  >
+                    <img 
+                      src="/assets/images/coordinator.jpg" 
+                      alt="Mrs. Isha Padhi"
+                      style={{ width: "100%", height: "100%", objectPosition: "top center", objectFit: "cover" }}
+                    />
+                  </div>
+                  <h3 style={{ fontSize: "1.25rem", color: "var(--primary-dark)", margin: "0 0 0.25rem 0" }}>Mrs. Isha Padhi</h3>
+                  <span style={{ fontSize: "0.85rem", color: "var(--gold-dark)", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "var(--space-md)" }}>
+                    Academic Coordinator
+                  </span>
+                  <div style={{ width: "40px", height: "2px", background: "var(--gold)", marginBottom: "var(--space-md)" }}></div>
+                  <p style={{ fontSize: "0.925rem", color: "var(--text-muted)", lineHeight: "1.6", margin: 0, fontStyle: "italic" }}>
+                    &ldquo;Our academic structure is designed to promote active learning, critical thinking, and structured discipline. By combining a comprehensive curriculum with personalized mentoring and special coaching modules for NEET/JEE, we ensure our students are well-equipped to excel in board examinations and their future careers. We strive to create an environment where every student can unlock their highest potential.&rdquo;
+                  </p>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+        </>
       )}
     </>
   );

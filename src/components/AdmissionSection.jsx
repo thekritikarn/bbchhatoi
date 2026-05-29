@@ -184,9 +184,34 @@ export default function AdmissionSection({ isPreview = false }) {
           ))}
         </ScrollReveal>
 
-        {/* Required Details - Hidden on preview */}
         {!isPreview ? (
           <>
+            {/* Direct Admission Support Card */}
+            <ScrollReveal className="reveal" style={{ marginBottom: "var(--space-4xl)" }}>
+              <div 
+                style={{
+                  background: "var(--primary-50)",
+                  border: "1px solid var(--primary-100)",
+                  borderLeft: "4px solid var(--gold)",
+                  padding: "var(--space-xl)",
+                  borderRadius: "var(--radius-md)",
+                  boxShadow: "var(--shadow-sm)"
+                }}
+              >
+                <div style={{ display: "flex", gap: "var(--space-md)", alignItems: "flex-start" }}>
+                  <span style={{ fontSize: "1.75rem", lineHeight: "1", flexShrink: 0, marginTop: "-0.1rem" }}>ℹ️</span>
+                  <div>
+                    <h4 style={{ color: "var(--primary-dark)", margin: "0 0 0.5rem 0", fontWeight: "700", fontFamily: "var(--font-body)" }}>
+                      Direct Admission & Helpline Support
+                    </h4>
+                    <p style={{ color: "var(--text-body)", margin: 0, fontSize: "0.95rem", lineHeight: "1.6" }}>
+                      Unable to apply via the SAMS Portal? You can visit the school campus directly for walk-in admissions. Our dedicated admission facilitation desk will assist you with the registration process and document submission. For immediate queries, contact our Admission Incharge directly at <strong><a href="tel:+919668183662" style={{ color: "var(--primary)", textDecoration: "underline" }}>+91 96681 83662</a></strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
             {/* Stream Eligibility & Intake Section */}
             <ScrollReveal className="intake-wrapper reveal" style={{ marginBottom: "var(--space-4xl)" }}>
               <div className="text-center" style={{ marginBottom: "var(--space-2xl)" }}>

@@ -22,7 +22,9 @@ export default function FeesSection() {
       const params = new URLSearchParams(window.location.search);
       const streamParam = params.get("stream");
       if (streamParam === "science" || streamParam === "arts") {
-        setActiveTab(streamParam);
+        setTimeout(() => {
+          setActiveTab(streamParam);
+        }, 0);
       }
     }
 

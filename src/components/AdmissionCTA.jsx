@@ -50,7 +50,7 @@ export default function AdmissionCTA() {
               <span>Limited Intake Available</span>
             </h2>
             <p className="admission-cta-sub">
-              Admissions for +2 Science and +2 Arts streams have officially commenced. Secure your future with our expert faculty and fully-equipped laboratories. Apply online via SAMS Odisha or visit our campus facilitation desk for free assistance.
+              Admissions for +2 Science and +2 Arts streams have officially commenced. Secure your future with our expert faculty and fully-equipped laboratories. Apply online via SAMS Odisha, visit our campus facilitation desk for free assistance, or contact us directly to secure your seat.
             </p>
 
             {/* CTA buttons */}

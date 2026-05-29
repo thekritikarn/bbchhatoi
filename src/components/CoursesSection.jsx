@@ -104,8 +104,8 @@ export default function CoursesSection({ isPreview = false }) {
       const params = new URLSearchParams(window.location.search);
       const streamParam = params.get("stream");
       if (streamParam === "science" || streamParam === "arts") {
-        setActiveStream(streamParam);
         setTimeout(() => {
+          setActiveStream(streamParam);
           if (detailsRef.current) {
             detailsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
           }
